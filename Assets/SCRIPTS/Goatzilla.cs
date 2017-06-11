@@ -61,19 +61,11 @@ public class Goatzilla : LifeObject
 					else
 						UpdateActionWhileEnraged ();
 
-<<<<<<< HEAD
 					anim.SetFloat ("Speed", speed);
 					if (movingDirection == Direction.LEFT)
 						MoveLeft ();
 					else if (movingDirection == Direction.RIGHT)
 						MoveRight ();
-=======
-				anim.SetFloat ("Speed", speed);	
-				if (movingDirection == Direction.LEFT) {
-					MoveLeft ();
-				} else if (movingDirection == Direction.RIGHT) {
-					MoveRight ();
->>>>>>> origin/Mechaman_Movement
 				}
 
 				timer += Time.deltaTime;
