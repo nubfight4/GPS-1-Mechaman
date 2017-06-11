@@ -36,7 +36,6 @@ public class Bullet : MonoBehaviour {
 		if (target.gameObject.CompareTag ("Enemy")) {
 			Destroy (this.gameObject);
 			target.gameObject.GetComponent<Goatzilla> ().ReceiveDamage (damage);
-			target.gameObject.GetComponent<Goatzilla> ().PlayKnockbackAnimation ();
 		} 
 
 		else if (target.gameObject.CompareTag ("Player")) {

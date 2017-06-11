@@ -9,10 +9,8 @@ public class Goatzilla : LifeObject
 	public float initialSpeed = 1f;
 	public float meleeRange = 3f;
 	public float chargeSpeedFactor = 3f;
-
-	public GameObject rockIndicatorPrefab;
+	public GameObject rockPrefab;
 	public GameObject eyeLaserPrefab;
-
 	private Mecha target;
 	private float speed;
 	private float timer;
@@ -22,8 +20,6 @@ public class Goatzilla : LifeObject
 	private bool isEnraged;
 	private int enrageHpThreshold;
 	private bool nearToTarget;
-	private bool freeze;
-
 	private Animator anim;
 
 	enum Direction
@@ -42,7 +38,6 @@ public class Goatzilla : LifeObject
 		attacked = false;
 		SetMaxHP (1000);
 		isEnraged = false;
-		freeze = false;
 		enrageHpThreshold = 300;
 		SetHP (GetMaxHP ());
 		//ReceiveDamage (700);
@@ -50,30 +45,31 @@ public class Goatzilla : LifeObject
 
 	void Update () 
 	{
-		if (target != null) {
-			if (isAlive) {
-				CheckDeath ();
+		if (isAlive) {
+			CheckDeath ();
+
+			if (target != null) {
 				UpdateMonsterCondition (); // Change monster to enrage when HP falls below enrage hp threshold
 
-				if (!freeze) {
-					if (!isEnraged)
-						UpdateAction ();
-					else
-						UpdateActionWhileEnraged ();
-
-					anim.SetFloat ("Speed", speed);
-					if (movingDirection == Direction.LEFT)
-						MoveLeft ();
-					else if (movingDirection == Direction.RIGHT)
-						MoveRight ();
+				if (!isEnraged) {
+					UpdateAction ();
+				} else {
+					UpdateActionWhileEnraged ();
 				}
 
+				anim.SetFloat ("Speed", speed);	
+				if (movingDirection == Direction.LEFT) {
+					MoveLeft ();
+				} else if (movingDirection == Direction.RIGHT) {
+					MoveRight ();
+				}
 				timer += Time.deltaTime;
 			}
 		}
+
 	}
 
-	private IEnumerator UpdateMovingDirection (int numberOfUpdates, float duration)
+	IEnumerator UpdateMovingDirection (int numberOfUpdates, float duration)
 	{
 		float delayReactDuration = duration / numberOfUpdates;
 		for (int i = 0; i < numberOfUpdates; i++) {
@@ -82,83 +78,92 @@ public class Goatzilla : LifeObject
 		}
 	}
 
-	private void ChangeMovingDirection ()
+	void ChangeMovingDirection ()
 	{
 		movingDirection = (GetDistanceFromTarget () > meleeRange) ? SeekTarget () : Direction.NONE;
 	}
 
-	private void Reset ()
+	void Reset ()
 	{
 		SetSpeed (GetInitialSpeed ());
 		timer = 0;
 		attacked = false;
 	}
 
-	private void UpdateAction ()
+	void UpdateAction ()
 	{
-		if (timer < 2.0f)
+		if (timer < 2.0f) {
 			StartCoroutine (UpdateMovingDirection (3, 2));
-		else if (timer < 5.0f) {
-			if (GetSpeed () != 0)
+		} else if (timer < 5.0f) {
+			if (GetSpeed () != 0) {
 				SetSpeed (0);
-			
-			if (!attacked) {
-				if (GetDistanceFromTarget () <= meleeRange)
-					Slash ();
-				else
-					ThrowRock ();
 			}
-		} else
+			if (!attacked) {
+				if (GetDistanceFromTarget () <= meleeRange) {
+					Slash ();
+				} else {
+					ThrowRock ();
+				}
+			}
+		} else {
 			Reset ();
+		}
 	}
 
-	private void UpdateActionWhileEnraged ()
+	void UpdateActionWhileEnraged ()
 	{
 		if (timer < 3.0f) {
-			if (GetSpeed () != GetInitialSpeed () * chargeSpeedFactor)
+			if (GetSpeed () != GetInitialSpeed () * chargeSpeedFactor) {
 				SetSpeed (GetInitialSpeed () * chargeSpeedFactor);
+			}
 			StartCoroutine (UpdateMovingDirection (5, 3));
 		} else if (timer < 6.0f) {
 			nearToTarget = (GetDistanceFromTarget () <= meleeRange) ? true : false;
-			if (GetSpeed () != 0)
+			if (GetSpeed () != 0) {
 				SetSpeed (0);
-
-			if (!attacked && nearToTarget)
+			}
+			if (!attacked && nearToTarget) {
 				StartCoroutine (Headbutt ());
+			}
 		} else if (timer < 7.0f) {
-			if (!attacked && !nearToTarget)
-				Laser ();
-		} else if (timer < 9.0f) {
-			if (!nearToTarget)
+			if (!nearToTarget) {
+				if (!attacked) {
+					Laser ();
+				}
+			} else {
 				Reset ();
-		} else
+			}
+		} else if (timer >= 9) {
 			Reset ();
+		}
 	}
 
-	private void Flip ()
+	void Flip ()
 	{
 		Vector3 v3 = transform.localScale;
 		v3.x *= -1;
 		transform.localScale = v3;
 	}
 
-	private void MoveLeft ()
+	void MoveLeft ()
 	{
 		faceLeft = true;
 		transform.Translate (Vector3.left * Time.deltaTime * speed);
-		if (transform.localScale.x < 0)
+		if (transform.localScale.x < 0) {
 			Flip ();
+		}
 	}
 
-	private void MoveRight ()
+	void MoveRight ()
 	{
 		faceLeft = false;
 		transform.Translate (Vector3.right * Time.deltaTime * speed);
-		if (transform.localScale.x > 0)
+		if (transform.localScale.x > 0) {
 			Flip ();
+		}
 	}
 
-	private Direction SeekTarget ()
+	Direction SeekTarget ()
 	{
 		Vector3 targetDir = target.transform.position - transform.position;
 		if (targetDir.x < 0)
@@ -169,62 +174,65 @@ public class Goatzilla : LifeObject
 			return Direction.NONE;
 	}
 
-	private float GetDistanceFromTarget ()
+	float GetDistanceFromTarget ()
 	{
 		return Vector3.Distance (transform.position, target.transform.position);
 	}
 
-	private void FaceTarget ()
+	void FaceTarget ()
 	{
 		float initSpeed = GetSpeed ();
 		SetSpeed (1);
 		if (movingDirection != SeekTarget ()) {
-			if (SeekTarget () == Direction.LEFT)
+			if (SeekTarget () == Direction.LEFT) {
 				MoveLeft ();
-			else
+			} else {
 				MoveRight ();
+			}
 		}
 		SetSpeed (initSpeed);
 	}
 
-	public IEnumerator ApplyDamageWithDelay (int damage, float delay)
+	IEnumerator ApplyDamageWithDelay (int damage, Vector3 knockbackDir, float delay)
 	{
 		yield return new WaitForSeconds (delay);
 		target.ReceiveDamage (damage);
-		//target.Knockback (knockbackDir, 1);
+		target.Knockback (knockbackDir, 1);
 	}
 
-	private void Slash ()
+	void Slash ()
 	{
 		attacked = true;
 		if (GetDistanceFromTarget () <= meleeRange) {
 			FaceTarget ();
 			Vector3 dir = new Vector3 ((target.transform.position.x - transform.position.x) * 1.2f, 2);
 			anim.SetTrigger ("Slash");
-			StartCoroutine (ApplyDamageWithDelay (40, 1.2f));
+			StartCoroutine (ApplyDamageWithDelay (40, dir, 1.2f));
 		}
 	}
 
-	private void ThrowRock ()
+	void ThrowRock ()
 	{
 		attacked = true;
-		anim.SetTrigger ("ThrowRock");
-		Vector3 initPos = new Vector3 (target.transform.position.x, 1.5f);
-		Instantiate (rockIndicatorPrefab, initPos, Quaternion.identity);
+		// FaceTarget ();
+		// float offset = (faceLeft) ? -3 : 3;
+		// Vector3 initPos = new Vector3 (transform.position.x + offset, transform.position.y);
+		Vector3 initPos = new Vector3 (target.transform.position.x, 5);
+		GameObject rock = Instantiate (rockPrefab, initPos, Quaternion.identity);
+		rock.GetComponent<Rock> ().Initialize (target, 50, 8.0f);
 	}
 
-	private void UpdateMonsterCondition ()
+	void UpdateMonsterCondition ()
 	{
 		if (!isEnraged && GetHP () <= enrageHpThreshold) {
 			isEnraged = true;
-			StartCoroutine (Immobolize (1.8f));
 			anim.SetTrigger ("Enrage");
 			Reset ();
 			Debug.Log ("Monster is enraged!");
 		}
 	}
 
-	private IEnumerator Headbutt ()
+	IEnumerator Headbutt ()
 	{
 		attacked = true;
 		FaceTarget ();
@@ -263,20 +271,5 @@ public class Goatzilla : LifeObject
 	private float GetSpeed ()
 	{
 		return this.speed;
-	}
-
-	public void PlayKnockbackAnimation ()
-	{
-		anim.SetTrigger ("Damage");
-	}
-		
-	public IEnumerator Immobolize (float duration)
-	{
-		float initTimer = timer, initSpeed = GetSpeed ();
-		freeze = true;
-		yield return new WaitForSeconds (duration);
-		timer = initTimer;
-		SetSpeed (initSpeed);
-		freeze = false;
 	}
 }

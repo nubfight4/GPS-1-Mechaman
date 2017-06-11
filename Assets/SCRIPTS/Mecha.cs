@@ -9,9 +9,11 @@ public class Mecha: LifeObject {
 
 	bool canJumpDownPlatform = false;
 	bool isJumping = false;
-	public bool isMeleeMode = false;
+	bool isSquating = false;
+	public bool isMeleeMode = true;
 	public bool isHovering = false;
 
+	public float velo;
 	public float bulletDamage;
 	public float speed;
 	public float jumpPower;
@@ -24,11 +26,8 @@ public class Mecha: LifeObject {
 	private float attackTimer = 0;
 	private float attackCoolDown = 0.5f;
 	public Collider2D attackTrigger;
-
-	//Ammo
-	private int ammoAmount;
-	private int maxAmmoAmount = 100;
-	private bool isRecovering;
+	private Animator anim;
+	private Rigidbody2D rb2d;
 
 	void Awake()
 	{
@@ -38,31 +37,47 @@ public class Mecha: LifeObject {
 	void Start () {
 		SetMaxHP (500);
 		SetHP (this.GetMaxHP ());
-		SetAmmoAmount (maxAmmoAmount);
+		anim = GetComponent<Animator> ();
+		rb2d = GetComponent<Rigidbody2D> ();
+		velo = GetComponent<Rigidbody2D> ().velocity.x;
 	}
 		
 	// Update is called once per frame
 	void Update () {
 		if (isAlive) {
 			CheckDeath ();
-			if (!isRecovering)
-				StartCoroutine (RecoverAmmo ());
 
+			anim.SetFloat ("Speed", speed);
+			anim.SetBool ("isJumping", isJumping);
+			anim.SetBool ("isSquating", isSquating);
+			anim.SetBool ("isMeleeMode", isMeleeMode);
 			if (Input.GetKeyDown (KeyCode.W) && !isJumping) {	
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpPower, ForceMode2D.Impulse);
 				isJumping = true;
 			}
 			if (Input.GetKeyDown (KeyCode.S)) {
-				transform.Translate (Vector3.down * Time.deltaTime * speed);
-			}
-			if (Input.GetKey (KeyCode.A)) {
 
+				if (!isJumping) 
+				{
+					isSquating = true;
+				}
+				GetComponent<Rigidbody2D> ().AddForce (Vector2.down * jumpPower, ForceMode2D.Impulse);
+			}
+
+			if (Input.GetKeyUp (KeyCode.S)) 
+			{
+				isSquating = false;
+			}
+
+			if (Input.GetKey (KeyCode.A)) {
+				transform.localScale = new Vector3 (-1, 1, 1);
 				transform.Translate (Vector3.left * Time.deltaTime * speed);
 			}
 			if (Input.GetKey (KeyCode.D)) {
-
+				transform.localScale = new Vector3 (1, 1, 1);
 				transform.Translate (Vector3.right * Time.deltaTime * speed);	
 			}
+
 
 			//melee
 			if (Input.GetKeyDown ("f") && !attacking) {
@@ -82,15 +97,19 @@ public class Mecha: LifeObject {
 				}
 			}
 
-			if (Input.GetKey (KeyCode.RightShift)) {
-				if (isMeleeMode == false) {
-					GetComponent<SpriteRenderer> ().color = Color.red;
-				} else if (isMeleeMode == true) {
-					GetComponent<SpriteRenderer> ().color = Color.white;
+			if (Input.GetKeyDown (KeyCode.RightShift)) {
+				if (isMeleeMode == false) 
+				{
+					isMeleeMode = true;
+				} 
+				else if (isMeleeMode == true) 
+				{
+					isMeleeMode = false;	
 				}
-				isMeleeMode = !isMeleeMode;
+
 			}
-				
+
+			UpdateAnimator();							
 
 			/*	if (Input.GetMouseButtonDown(0))
 		{
@@ -124,6 +143,24 @@ public class Mecha: LifeObject {
 			
 	}
 
+	void UpdateAnimator ()
+	{
+		GetComponent<Animator>().SetFloat("Speed",Mathf.Abs(Input.GetAxis("Horizontal")*speed));
+
+/*
+		//Flips character based on direction
+
+		if (rb2d.velocity.x < 0) {
+			transform.localScale = new Vector3 (-1, 1, 1);
+		}
+
+		else if (rb2d.velocity.x > 0) 
+		{
+			transform.localScale = new Vector3 (1, 1, 1);
+		}
+*/
+	}
+
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Ground")
@@ -136,40 +173,5 @@ public class Mecha: LifeObject {
 		{
 			isJumping = false;
 		}
-	}
-
-	public int GetAmmoAmount () 
-	{
-		return this.ammoAmount;
-	}
-
-	public void SetAmmoAmount (int ammoAmount)
-	{
-		this.ammoAmount = ammoAmount;
-	}
-
-	public float GetAmmoAmountByPercentage ()
-	{
-		return (float)GetAmmoAmount () / maxAmmoAmount;
-	}
-
-	public bool UseAmmo (int amount)
-	{
-		if (GetAmmoAmount () - amount >= 0) {
-			SetAmmoAmount (GetAmmoAmount () - amount);
-			return true;
-		}
-		return false;
-	}
-
-	private IEnumerator RecoverAmmo ()
-	{
-		isRecovering = true;
-		while (true) {
-			yield return new WaitForSeconds (3);
-			if (GetAmmoAmount () < maxAmmoAmount)
-				SetAmmoAmount (GetAmmoAmount () + 1);
-		}
-		isRecovering = false;
 	}
 }
