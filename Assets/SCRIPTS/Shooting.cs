@@ -167,11 +167,8 @@ public class Shooting : MonoBehaviour
             {
                 //if (inFiringRange == true)
                 {
-					Mecha owner = GameObject.FindGameObjectWithTag ("Player").GetComponent<Mecha> ();
-					if (owner.UseAmmo (10)) {
-						GameObject newBullet = Instantiate (bulletPrefab, transform.position, Quaternion.identity);
-						newBullet.GetComponent<Bullet> ().direction = mouseDirection;
-					}
+                    GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                    newBullet.GetComponent<Bullet>().direction = mouseDirection;
                 }
                     
             }

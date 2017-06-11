@@ -46,7 +46,7 @@ public class EyeLaser : MonoBehaviour {
 			float knockbackDirX = (isDirectionFromLeft) ? -1 : 1;
 			Vector3 dir = new Vector3 (knockbackDirX, 1);
 			Physics2D.IgnoreCollision (target.gameObject.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
-			//target.gameObject.GetComponent<Mecha> ().Knockback (dir, knockbackPower);
+			target.gameObject.GetComponent<Mecha> ().Knockback (dir, knockbackPower);
 		} else if (target.gameObject.CompareTag ("Enemy")) {
 			Physics2D.IgnoreCollision (target.gameObject.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
 		}

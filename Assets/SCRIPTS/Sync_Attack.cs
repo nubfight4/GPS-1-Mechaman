@@ -670,7 +670,7 @@ public class Sync_Attack : MonoBehaviour {
 	void ResetComboTimer()
 	{
 		if (isKeyPress) {
-			//srender.color = Color.gray;
+			srender.color = Color.gray;
 			comboTimer += Time.deltaTime * 1000;
 		}
 		if (comboTimer > comboDuration) { //resets the button press count to 0
