@@ -7,11 +7,11 @@ using UnityEngine.Networking.Match;
 
 public class Sync_Attack : MonoBehaviour {
 
-	public Rigidbody2D rb2d;
-	public SpriteRenderer srender;
-	public Image image;
-	public Mecha mecha;
-	public BoxCollider2D box2D;
+	Rigidbody2D rb2d;
+	SpriteRenderer srender;
+	Image image;
+	Mecha mecha;
+	BoxCollider2D box2D;
 
 	public GameObject comboGUI; //to show the button press
 	public GameObject slashEffectPrefab;
@@ -19,6 +19,8 @@ public class Sync_Attack : MonoBehaviour {
 	public GameObject cyanEffect;
 	public GameObject specialAttackEmpty;
 	public GameObject lowKickPrefab;
+	public GameObject specialFistPrefab;
+	public GameObject emptyHaloEffect;
 
 	public GameObject imageW;
 	public GameObject imageA;
@@ -28,11 +30,13 @@ public class Sync_Attack : MonoBehaviour {
 	public GameObject imageRMB;
 	public GameObject imageExplode;
 
-	public GameObject specialAttackEmptyClone;
-	public GameObject bulletClone;
-	public GameObject cyanEffectClone;
-	public GameObject slashEffectPrefabClone;
-	public GameObject lowKickPrefabClone;
+	GameObject specialAttackEmptyClone;
+	GameObject bulletClone;
+	GameObject cyanEffectClone;
+	GameObject slashEffectPrefabClone;
+	GameObject lowKickPrefabClone;
+	GameObject specialFistPrefabClone;
+	GameObject emptyHaloEffectClone;
 
 	//use time.deltaTime * 1000, 1000ms = 1s, 500ms = 0.5s
 
@@ -332,7 +336,7 @@ public class Sync_Attack : MonoBehaviour {
 			currentCharge = maxCharge;
 		}
 	}
-
+		
 	void UltimateMode()
 	{
 		 //achieve ultimate mode first, then use special attack (NOT DONE)
@@ -344,18 +348,22 @@ public class Sync_Attack : MonoBehaviour {
 		}
 
 		if (isUltimateMode) {
-			srender.color = Color.green; //something cool happens in ultimate mode, colour green for now
+			
+			srender.color = Color.cyan; //something cool happens in ultimate mode, colour cyan for now
 
 			if (!createCyan) { //special FX
-				cyanEffectClone = Instantiate (cyanEffect, transform.position, Quaternion.identity);
+				cyanEffectClone = Instantiate (cyanEffect, new Vector2 (transform.position.x - 0.1f, transform.position.y), Quaternion.identity);
 				cyanEffectClone.transform.parent = gameObject.transform;
+				emptyHaloEffect.SetActive (true);
 				createCyan = true;
 			}
 		}
 
 		if (!isUltimateMode) {
-			createCyan = false;
+			srender.color = Color.white;
 			Destroy (cyanEffectClone);
+			emptyHaloEffect.SetActive (false);
+			createCyan = false;
 		}
 	}
 
@@ -471,6 +479,7 @@ public class Sync_Attack : MonoBehaviour {
 			}
 			else if (!mecha.isMeleeMode) { //range mode
 				Debug.Log("RANGE SPECIAL");
+				specialFistPrefabClone = Instantiate (specialFistPrefab, transform.position, Quaternion.identity); //create a script for special fist with homing ability 
 			}
 			SpecialReset ();
 		}
@@ -674,6 +683,7 @@ public class Sync_Attack : MonoBehaviour {
 			comboTimer += Time.deltaTime * 1000;
 		}
 		if (comboTimer > comboDuration) { //resets the button press count to 0
+			srender.color = Color.white;
 			isUp = 0; 
 			isLeft = 0; 
 			isDown = 0; 
