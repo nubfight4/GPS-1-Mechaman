@@ -1,28 +1,24 @@
 fileFormatVersion: 2
-guid: e9bce5e6a65849740b769aa93786fbed
-timeCreated: 1497292430
+guid: dfad28353f339e647876ed9a40932238
+timeCreated: 1497275870
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mechaman v2 block_0
-    21300002: mechaman v2 block_1
-    21300004: mechaman v2 block_2
-    21300006: mechaman v2 block_3
-    21300008: mechaman v2 block_4
-    21300010: mechaman v2 block_5
-    21300012: mechaman v2 block_6
-    21300014: mechaman v2 block_7
-    21300016: mechaman v2 block_8
-    21300018: mechaman v2 block_9
-    21300020: mechaman v2 block_10
-    21300022: mechaman v2 block_11
-    21300024: mechaman v2 block_12
-    21300026: mechaman v2 block_13
-    21300028: mechaman v2 block_14
-    21300030: mechaman v2 block_15
-    21300032: mechaman v2 block_16
-    21300034: mechaman v2 block_17
-    21300036: mechaman v2 block_18
+    21300000: mechaman v2 punch_0
+    21300002: mechaman v2 punch_1
+    21300004: mechaman v2 punch_2
+    21300006: mechaman v2 punch_3
+    21300008: mechaman v2 punch_4
+    21300010: mechaman v2 punch_5
+    21300012: mechaman v2 punch_6
+    21300014: mechaman v2 punch_7
+    21300016: mechaman v2 punch_8
+    21300018: mechaman v2 punch_9
+    21300020: mechaman v2 punch_10
+    21300022: mechaman v2 punch_11
+    21300024: mechaman v2 punch_12
+    21300026: mechaman v2 punch_13
+    21300028: mechaman v2 punch_14
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -97,247 +93,195 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mechaman v2 block_0
+      name: mechaman v2 punch_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 152
         y: 1200
-        width: 350
-        height: 300
+        width: 114
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_1
+      name: mechaman v2 punch_1
       rect:
         serializedVersion: 2
-        x: 350
+        x: 502
         y: 1200
-        width: 350
-        height: 300
+        width: 116
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_2
+      name: mechaman v2 punch_2
       rect:
         serializedVersion: 2
-        x: 700
+        x: 852
         y: 1200
-        width: 350
-        height: 300
+        width: 117
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_3
+      name: mechaman v2 punch_3
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 1200
-        width: 350
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: mechaman v2 block_4
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 152
         y: 900
-        width: 350
-        height: 300
+        width: 134
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_5
+      name: mechaman v2 punch_4
       rect:
         serializedVersion: 2
-        x: 350
+        x: 502
         y: 900
-        width: 350
-        height: 300
+        width: 150
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_6
+      name: mechaman v2 punch_5
       rect:
         serializedVersion: 2
-        x: 700
+        x: 852
         y: 900
-        width: 350
-        height: 300
+        width: 175
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_7
+      name: mechaman v2 punch_6
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 900
-        width: 350
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: mechaman v2 block_8
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 152
         y: 600
-        width: 350
-        height: 300
+        width: 175
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_9
+      name: mechaman v2 punch_7
       rect:
         serializedVersion: 2
-        x: 350
+        x: 503
         y: 600
-        width: 350
-        height: 300
+        width: 175
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_10
+      name: mechaman v2 punch_8
       rect:
         serializedVersion: 2
-        x: 700
+        x: 852
         y: 600
-        width: 350
-        height: 300
+        width: 175
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_11
+      name: mechaman v2 punch_9
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 600
-        width: 350
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: mechaman v2 block_12
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 152
         y: 300
-        width: 350
-        height: 300
+        width: 175
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_13
+      name: mechaman v2 punch_10
       rect:
         serializedVersion: 2
-        x: 350
+        x: 502
         y: 300
-        width: 350
-        height: 300
+        width: 175
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_14
+      name: mechaman v2 punch_11
       rect:
         serializedVersion: 2
-        x: 700
+        x: 852
         y: 300
-        width: 350
-        height: 300
+        width: 154
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_15
+      name: mechaman v2 punch_12
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 300
-        width: 350
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: mechaman v2 block_16
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 152
         y: 0
-        width: 350
-        height: 300
+        width: 133
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_17
+      name: mechaman v2 punch_13
       rect:
         serializedVersion: 2
-        x: 350
+        x: 502
         y: 0
-        width: 350
-        height: 300
+        width: 122
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mechaman v2 block_18
+      name: mechaman v2 punch_14
       rect:
         serializedVersion: 2
-        x: 700
+        x: 852
         y: 0
-        width: 350
-        height: 300
+        width: 114
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

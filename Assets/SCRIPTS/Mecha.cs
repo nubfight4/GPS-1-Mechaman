@@ -17,15 +17,30 @@ public class Mecha: LifeObject {
 	public float speed;
 	public float jumpPower;
 
+	private Animator anim;
+
 	public GameObject bulletPrefab;
 	public GameObject meleePrefab;
 
-	//melee
-	private bool attacking = false;
-	private float attackTimer = 0;
-	private float attackCoolDown = 0.5f;
-	public Collider2D attackTrigger;
-	private Animator anim;
+	//Melee
+	public float attackRate = 0.3f;
+	const int TOTAL_ATTACK = 2;
+	bool[] attack = new bool[TOTAL_ATTACK];
+	float[] attackTimer = new float[TOTAL_ATTACK];
+	private float comboTimer = 0;
+	private bool delay = false;
+	private float clickCount = 0;
+	private bool haveTaste = false;
+	private float tasteTimer = 0;
+
+	//Block
+	private bool isBlocking = false;
+	private bool canBlock = true;
+	public float blockCooldown = 0;
+	private float blockCdTimer = 0;
+	public float blockTimer = 0;
+	public float blockDuration = 0;
+
 
 	//Ammo
 	private int ammoAmount;
@@ -48,11 +63,6 @@ public class Mecha: LifeObject {
 	void Update () {
 		if (isAlive) {
 			CheckDeath ();
-
-			anim.SetFloat ("Speed", speed);
-			anim.SetBool ("isJumping", isJumping);
-			anim.SetBool ("isSquating", isSquating);
-			anim.SetBool ("isMeleeMode", isMeleeMode);
 
 			if (!isRecovering)
 				StartCoroutine (RecoverAmmo ());
@@ -85,24 +95,6 @@ public class Mecha: LifeObject {
 				transform.Translate (Vector3.right * Time.deltaTime * speed);	
 			}
 
-			//melee
-			if (Input.GetKeyDown ("f") && !attacking) {
-
-				attacking = true;
-				attackTimer = attackCoolDown;
-				Debug.Log ("I am attacking");
-			}
-
-			if (attacking) {
-				if (attackTimer > 0) {
-					attackTimer -= Time.deltaTime;
-				} else {
-					attacking = false;
-					attackTrigger.enabled = false;
-					Debug.Log ("I am done attacking");
-				}
-			}
-
 			if (Input.GetKeyDown (KeyCode.RightShift)) {
 				if (isMeleeMode == false) 
 				{
@@ -114,21 +106,14 @@ public class Mecha: LifeObject {
 				}
 
 			}
-				
+
+			if(isMeleeMode)
+			{
+				MeleeAttack();
+			}
+			Blocking();
 			UpdateAnimator();		
 
-			/*	if (Input.GetMouseButtonDown(0))
-		{
-			Vector3 mouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-			mouseDirection.z = 0.0f;
-			mouseDirection.Normalize();
-
-			if (isMeleeMode == false) {
-				GameObject newBullet = Instantiate (bulletPrefab, transform.position, Quaternion.identity);
-				newBullet.GetComponent<Bullet> ().direction = mouseDirection;
-			} 
-		}
-        */
 
 			/*
 		if (transform.position.y > 1.1f) 
@@ -149,8 +134,115 @@ public class Mecha: LifeObject {
 			
 	}
 
+	void MeleeAttack()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			delay = true;
+			clickCount += 1;
+		}
+		if(delay)
+		{
+			canBlock = false;
+			if(Input.GetMouseButtonDown(1))
+			{
+				haveTaste = true;
+				tasteTimer = 0;
+			}
+			if(haveTaste)
+			{
+				tasteTimer += Time.deltaTime;
+				if(tasteTimer > attackRate)
+				{
+					haveTaste = false;
+					tasteTimer = 0;
+				}
+			}
+			canBlock = true;
+			comboTimer += Time.deltaTime;
+			if(comboTimer > 1)
+			{
+				delay = false;
+				comboTimer = 0;
+				clickCount = 0;
+			}
+		}
+		if(clickCount == 2 && Input.GetMouseButtonDown(0))
+		{
+			attack[1] = true;
+			attackTimer[1] = 0;
+		}
+		else if(clickCount == 1 && Input.GetMouseButtonDown(0))
+		{
+			attack[0] = true;
+			attackTimer[0] = 0;
+		}
+		if(attack[0])
+		{
+			attackTimer[0] += Time.deltaTime;
+			if(attackTimer[0] > attackRate)
+			{
+				attack[0] = false;
+				attackTimer[0] = 0;
+			}
+		}
+		if(attack[1])
+		{
+			attackTimer[1] += Time.deltaTime;
+			if(attackTimer[1] > attackRate)
+			{
+				attack[1] = false;
+				attackTimer[1] = 0;
+			}
+		}
+	}
+
+	void Blocking()
+	{
+		{
+			if(!isJumping)
+			{
+				if (Input.GetMouseButton(1) && canBlock == true)
+				{
+					isBlocking = true;
+					blockTimer += Time.deltaTime;
+					if(blockTimer > 3)
+					{
+						blockTimer = 0;
+						isBlocking = false;
+						canBlock = false;
+					}
+				}
+				if(Input.GetMouseButtonUp(1))
+				{
+					blockTimer = 0;
+					isBlocking = false;
+					canBlock = false;
+				}
+			}
+			if(!canBlock)
+			{
+				blockCdTimer += Time.deltaTime;
+				if(blockCdTimer >= blockCooldown) 
+				{
+					blockCdTimer = 0;
+					canBlock = true;
+				}
+			}
+		}
+
+	}
+
 	void UpdateAnimator ()
 	{
+		anim.SetFloat ("Speed", speed);
+		anim.SetBool ("isJumping", isJumping);
+		anim.SetBool ("isSquating", isSquating);
+		anim.SetBool ("isMeleeMode", isMeleeMode);
+		anim.SetBool("attack1", attack[0]);
+		anim.SetBool("attack2", attack[1]);
+		anim.SetBool("isBlocking",isBlocking);
+		anim.SetBool("haveaTaste",haveTaste);
 		GetComponent<Animator>().SetFloat("Speed",Mathf.Abs(Input.GetAxis("Horizontal")*speed));
 	}
 
