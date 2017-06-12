@@ -1,0 +1,434 @@
+fileFormatVersion: 2
+guid: f510d9f9653b27145926d20e1f491424
+timeCreated: 1497175872
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: mechaman v2 rocket walk_0
+    21300002: mechaman v2 rocket walk_1
+    21300004: mechaman v2 rocket walk_2
+    21300006: mechaman v2 rocket walk_3
+    21300008: mechaman v2 rocket walk_4
+    21300010: mechaman v2 rocket walk_5
+    21300012: mechaman v2 rocket walk_6
+    21300014: mechaman v2 rocket walk_7
+    21300016: mechaman v2 rocket walk_8
+    21300018: mechaman v2 rocket walk_9
+    21300020: mechaman v2 rocket walk_10
+    21300022: mechaman v2 rocket walk_11
+    21300024: mechaman v2 rocket walk_12
+    21300026: mechaman v2 rocket walk_13
+    21300028: mechaman v2 rocket walk_14
+    21300030: mechaman v2 rocket walk_15
+    21300032: mechaman v2 rocket walk_16
+    21300034: mechaman v2 rocket walk_17
+    21300036: mechaman v2 rocket walk_18
+    21300038: mechaman v2 rocket walk_19
+    21300040: mechaman v2 rocket walk_20
+    21300042: mechaman v2 rocket walk_21
+    21300044: mechaman v2 rocket walk_22
+    21300046: mechaman v2 rocket walk_23
+    21300048: mechaman v2 rocket walk_24
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_0
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1200
+        width: 119
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_1
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 1200
+        width: 98
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_2
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 1200
+        width: 140
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_3
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 1200
+        width: 155
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_4
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 1200
+        width: 189
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_5
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 911
+        width: 213
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_6
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 920
+        width: 236
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_7
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 911
+        width: 234
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_8
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 903
+        width: 228
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_9
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 900
+        width: 214
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 600
+        width: 213
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_11
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 600
+        width: 167
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_12
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 600
+        width: 131
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_13
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 600
+        width: 95
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_14
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 600
+        width: 143
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_15
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 300
+        width: 159
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_16
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 300
+        width: 195
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_17
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 308
+        width: 215
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_18
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 316
+        width: 231
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_19
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 309
+        width: 230
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_20
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 3
+        width: 228
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_21
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 3
+        width: 228
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_22
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1
+        width: 201
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_23
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 3
+        width: 176
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mechaman v2 rocket walk_24
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 0
+        width: 142
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -9,6 +9,7 @@ public class Mecha: LifeObject {
 
 	bool canJumpDownPlatform = false;
 	bool isJumping = false;
+	bool isSquating = false;
 	public bool isMeleeMode = false;
 	public bool isHovering = false;
 
@@ -24,6 +25,7 @@ public class Mecha: LifeObject {
 	private float attackTimer = 0;
 	private float attackCoolDown = 0.5f;
 	public Collider2D attackTrigger;
+	private Animator anim;
 
 	//Ammo
 	private int ammoAmount;
@@ -39,12 +41,19 @@ public class Mecha: LifeObject {
 		SetMaxHP (500);
 		SetHP (this.GetMaxHP ());
 		SetAmmoAmount (maxAmmoAmount);
+		anim = GetComponent<Animator> ();
 	}
 		
 	// Update is called once per frame
 	void Update () {
 		if (isAlive) {
 			CheckDeath ();
+
+			anim.SetFloat ("Speed", speed);
+			anim.SetBool ("isJumping", isJumping);
+			anim.SetBool ("isSquating", isSquating);
+			anim.SetBool ("isMeleeMode", isMeleeMode);
+
 			if (!isRecovering)
 				StartCoroutine (RecoverAmmo ());
 
@@ -52,15 +61,27 @@ public class Mecha: LifeObject {
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpPower, ForceMode2D.Impulse);
 				isJumping = true;
 			}
-			if (Input.GetKeyDown (KeyCode.S)) {
-				transform.Translate (Vector3.down * Time.deltaTime * speed);
-			}
-			if (Input.GetKey (KeyCode.A)) {
 
+			if (Input.GetKeyDown (KeyCode.S)) {
+				if (!isJumping) 
+				{
+					isSquating = true;
+				}
+				GetComponent<Rigidbody2D> ().AddForce (Vector2.down * jumpPower, ForceMode2D.Impulse);
+			}
+
+			if (Input.GetKeyUp (KeyCode.S)) 
+			{
+				isSquating = false;
+			}
+
+			if (Input.GetKey (KeyCode.A)) {
+				transform.localScale = new Vector3 (-1, 1, 1);
 				transform.Translate (Vector3.left * Time.deltaTime * speed);
 			}
-			if (Input.GetKey (KeyCode.D)) {
 
+			if (Input.GetKey (KeyCode.D)) {
+				transform.localScale = new Vector3 (1, 1, 1);
 				transform.Translate (Vector3.right * Time.deltaTime * speed);	
 			}
 
@@ -82,15 +103,19 @@ public class Mecha: LifeObject {
 				}
 			}
 
-			if (Input.GetKey (KeyCode.RightShift)) {
-				if (isMeleeMode == false) {
-					GetComponent<SpriteRenderer> ().color = Color.red;
-				} else if (isMeleeMode == true) {
-					GetComponent<SpriteRenderer> ().color = Color.white;
+			if (Input.GetKeyDown (KeyCode.RightShift)) {
+				if (isMeleeMode == false) 
+				{
+					isMeleeMode = true;
+				} 
+				else if (isMeleeMode == true) 
+				{
+					isMeleeMode = false;	
 				}
-				isMeleeMode = !isMeleeMode;
+
 			}
 				
+			UpdateAnimator();		
 
 			/*	if (Input.GetMouseButtonDown(0))
 		{
@@ -122,6 +147,11 @@ public class Mecha: LifeObject {
 
 		}
 			
+	}
+
+	void UpdateAnimator ()
+	{
+		GetComponent<Animator>().SetFloat("Speed",Mathf.Abs(Input.GetAxis("Horizontal")*speed));
 	}
 
 	void OnCollisionEnter2D (Collision2D coll)
