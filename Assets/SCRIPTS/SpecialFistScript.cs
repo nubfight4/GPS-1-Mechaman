@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpecialFistScript : MonoBehaviour {
 
-	//when created, will slowly move forwards to enemy position
-	//upon touching enemy, will move backwards to player
+	//when created, will quickly move forwards to enemy position
+	//upon touching enemy, will move slowly backwards to player
 
 	Rigidbody2D rb2d;
 
@@ -45,10 +45,9 @@ public class SpecialFistScript : MonoBehaviour {
 		mechaPos = mecha.transform.position;
 	}
 
-	void MoveTowardsGoatzilla ()
+	void MoveTowardsGoatzilla () //crashes when goatzilla is killed, suggest create empty as reference
 	{
 		if (!touchEnemy) {
-			
 			Vector2 direction = goatzillaPos - specialFistPos; //special fist move forwards
 			transform.LookAt (transform.forward + transform.position, direction);
 

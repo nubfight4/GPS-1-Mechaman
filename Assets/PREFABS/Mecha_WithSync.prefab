@@ -248,9 +248,6 @@ MonoBehaviour:
   jumpPower: 0
   bulletPrefab: {fileID: 0}
   meleePrefab: {fileID: 0}
-  floorLayer:
-    serializedVersion: 2
-    m_Bits: 0
   attackTrigger: {fileID: 0}
 --- !u!114 &114181590833481660
 MonoBehaviour:
@@ -282,17 +279,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df467b8a05b6a441b5f4e4fac10a799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d: {fileID: 0}
-  srender: {fileID: 0}
-  image: {fileID: 0}
-  mecha: {fileID: 0}
-  box2D: {fileID: 0}
   comboGUI: {fileID: 0}
   slashEffectPrefab: {fileID: 0}
   Bullet: {fileID: 0}
   cyanEffect: {fileID: 0}
   specialAttackEmpty: {fileID: 0}
   lowKickPrefab: {fileID: 0}
+  specialFistPrefab: {fileID: 0}
+  emptyHaloEffect: {fileID: 0}
+  elevatorAttackPrefab: {fileID: 0}
   imageW: {fileID: 0}
   imageA: {fileID: 0}
   imageS: {fileID: 0}
@@ -300,11 +295,6 @@ MonoBehaviour:
   imageLMB: {fileID: 0}
   imageRMB: {fileID: 0}
   imageExplode: {fileID: 0}
-  specialAttackEmptyClone: {fileID: 0}
-  bulletClone: {fileID: 0}
-  cyanEffectClone: {fileID: 0}
-  slashEffectPrefabClone: {fileID: 0}
-  lowKickPrefabClone: {fileID: 0}
   comboDuration: 1000
   comboTimer: 0
   isUp: 0
@@ -359,6 +349,16 @@ MonoBehaviour:
   ultimateCharge: 40
   specialCharge: 60
   isHitEnemy: 0
+  canElevator: 0
+  hasElevatorJump: 0
+  elevatorCooldown: 1000
+  elevatorCooldownCounter: 0
+  elevatorHoldDuration: 100
+  elevatorJumpPower: 10
+  elevatorForwardPower: 5
+  elevatorDamping: 0.2
+  elevatorJumpDuration: 100
+  elevatorJumpCounter: 0
   slashDashSequence1: 0
   isRightLowKick: 0
   isLeftLowKick: 0
