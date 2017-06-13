@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuScript : MonoBehaviour {
+public class PauseMenuScript : MonoBehaviour {
 	public Sprite menu1;
 	public Sprite menu2;
 	public Sprite button1;

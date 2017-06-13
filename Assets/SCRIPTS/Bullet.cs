@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 	float speed = 8.0f;
 	float aliveTimer = 0.0f;
 	float aliveDuration = 1.5f;
-	public int damage = 200;
+	public int damage = 50;
 
 	public void Initialize (LifeObject target, int damage) {
 		this.damage = damage;
@@ -17,14 +17,13 @@ public class Bullet : MonoBehaviour {
 	void bulletMovement()
 	{
 		transform.Translate(direction * Time.deltaTime * speed);
-
 		aliveTimer += Time.deltaTime;
 		if(aliveTimer > aliveDuration)
 		{
 			Destroy(gameObject);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -40,6 +39,7 @@ public class Bullet : MonoBehaviour {
 		} 
 
 		else if (target.gameObject.CompareTag ("Player")) {
+			Debug.Log("No");
 			Physics2D.IgnoreCollision (target.gameObject.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
 		}
 	}
