@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 10, z: 0}
-  damage: 100
+  damage: 25
 --- !u!212 &212299875131538564
 SpriteRenderer:
   m_ObjectHideFlags: 1

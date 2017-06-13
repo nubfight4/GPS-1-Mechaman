@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 	float speed = 8.0f;
 	float aliveTimer = 0.0f;
 	float aliveDuration = 1.5f;
-	public int damage = 200;
+	public int damage = 50;
 
 	public void Initialize (LifeObject target, int damage) {
 		this.damage = damage;
@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
