@@ -1,10 +1,118 @@
-Text 1
-Text 2
-Third Text
-Forth text
+Welcome to the training simulation system, rookies, here I will be teaching you all the things you need to know about this Mecha. (Press enter to proceed)
+If you haven’t notice, there’s some bars on top of the screen. 
+You're health bar is colored blue. The red one is your enemy's’ health bar. There's also a purple bar, but we'll go into that later.
+First off we need a dummy! Let me just materialize one out now!
+... ... ...
+I guess we ran out of budget to create a dummy. 
+Well, let's just use this dummy on the right for now, one of our old member made it invincible for training. (Press <P> to skip the tutorial)
+Now, for the pilot controlling the movement, go ahead and dance like a wild beast, show your dominance! (Press <A> or <D> to Move around, <W> to jump, <S> to crouch)
+You make me proud, movement pilot! Now get some rest. Attacking pilot, its your time to shine!
+Let's try some punching and blocking, simple yet effective to bring down out terrif.... unique dummy! (Press Left Mouse Button to Punch, Right Mouse Button to block)
+Haha, seems simple right? Now here's something that would give you a bit of a challenge. Some combo attacks!
+Here's a basic combo attack, <3 Way Punch>! (Press Left Mouse Button 3 times)
+Well done! Attacking pilot, would you mind switching weapons? (Press <Y> for yes, <N> for no)
+Great! Now, let us proceed. (Press <Right Shift> to switch weapon)
+As you can see, you now have have a blaster! Go on, take a shot! (Press Left Mouse Button to shoot)
+Now we can talk about the purple bar. That bar is a Bullet bar, our Blaster can't shoot all the time, so let it charge after shooting.
+Great work! Now that both of you know how to pilot the mecha, its time for some teamwork moves!
+These moves require both of you to execute, so get ready to be in Sync with each other.
+Let's do a <Low Kick>, both pilots need to work together to make this attack! (Press <S>, <D>, Left Mouse Button in quick succesion)
+Haha, both of you are so in sync, might as well have the same mind, or better yet, be married as husband and wife! Haha!
+Don't take it too seriously, it's just a joke! Well done with the tutorial, its time for you to venture out to you're Epic Journey!!
+
+Oh.... You're the first to say you mind....
+Are you sure? You can swap into a pretty cool thing! (Press <Y> for yes, <N> for no)
+C'mon, I know you wan't to swap!
+Last chance! Are you really sure you don't wanna swap? (Press <Y> for yes, <N> for no)
+Fine, I guess you will learn sooner or later.
+
+Are you sure you want to skip the tutorial? (Press <Y> to skip the tutorial, Press <N> to cancel the skip)
+Oh my, both of you pilots already know how to pilot the mech, I see I'm not needed to teach the controls.
+Well, I guess it's time for you to venture out to you're Epic Journey!!
 
 
-This is Six
-Seven HERE
+<Level 1>
+Oh man, that looks like Godzilla!
+Wait..... he looks different.
+That's a Goat?!
+Quick, you have to stop him, his body emits radiation that could destroy the entire country!
+Work it thourgh and stop Goatzilla!
 
-HAHAHAHA Nine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Level 1 Trigger>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
