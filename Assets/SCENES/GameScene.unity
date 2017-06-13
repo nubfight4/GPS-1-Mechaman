@@ -898,7 +898,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 396620366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4223022, y: -0.13815308, z: 0}
+  m_LocalPosition: {x: 2.59, y: -0.12, z: 0}
   m_LocalScale: {x: 0.5080611, y: 0.5080611, z: 0.5080611}
   m_Children: []
   m_Father: {fileID: 844973842}
@@ -1553,7 +1553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -428.27, y: -230.29897}
+  m_AnchoredPosition: {x: -427.92, y: -230.36}
   m_SizeDelta: {x: 5.95, y: 0.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699982523
@@ -1719,7 +1719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -420.679, y: -230.2928}
+  m_AnchoredPosition: {x: -421.17, y: -230.2928}
   m_SizeDelta: {x: 6.203, y: 1.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844973843
@@ -1844,6 +1844,75 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 9.7, y: 5.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+--- !u!1 &966469307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 966469308}
+  - component: {fileID: 966469309}
+  m_Layer: 0
+  m_Name: border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966469308
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966469307}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.29, y: 3.14, z: 10}
+  m_LocalScale: {x: 13.610623, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1292315020}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &966469309
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966469307}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 72b2126a17c8df346a86fb8de011ef4b, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
 --- !u!224 &1037635720 stripped
@@ -2486,6 +2555,7 @@ Transform:
   m_Children:
   - {fileID: 1346062569}
   - {fileID: 277004925}
+  - {fileID: 966469308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2501,9 +2571,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mecha: {fileID: 458979412}
-  CameraBoundary: 0
-  minCameraPos: {x: 0, y: 0}
-  maxCameraPos: {x: 0, y: 0}
+  CameraBoundary: 1
+  minCameraPos: {x: -3.16, y: -7.3}
+  maxCameraPos: {x: 3.25, y: 0}
 --- !u!1 &1296013431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3427,11 +3497,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df467b8a05b6a441b5f4e4fac10a799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   rb2d: {fileID: 0}
   srender: {fileID: 0}
   image: {fileID: 0}
   mecha: {fileID: 0}
   box2D: {fileID: 0}
+  goatzilla: {fileID: 0}
+  embrace: {fileID: 0}
   comboGUI: {fileID: 0}
   slashEffectPrefab: {fileID: 1009030382059812, guid: a7c48585a9e3294448d31ef5101330fb,
     type: 2}
@@ -3440,6 +3513,10 @@ MonoBehaviour:
   specialAttackEmpty: {fileID: 0}
   lowKickPrefab: {fileID: 1948735328109018, guid: 87ba458ea246fe940b94decd4548e44a,
     type: 2}
+  specialFistPrefab: {fileID: 0}
+  emptyHaloEffect: {fileID: 0}
+  elevatorAttackPrefab: {fileID: 0}
+  loveEmbraceCollider: {fileID: 0}
   imageW: {fileID: 328264375}
   imageA: {fileID: 1285975648}
   imageS: {fileID: 1953240896}
@@ -3447,11 +3524,6 @@ MonoBehaviour:
   imageLMB: {fileID: 333505919}
   imageRMB: {fileID: 1151076054}
   imageExplode: {fileID: 440576200}
-  specialAttackEmptyClone: {fileID: 0}
-  bulletClone: {fileID: 0}
-  cyanEffectClone: {fileID: 0}
-  slashEffectPrefabClone: {fileID: 0}
-  lowKickPrefabClone: {fileID: 0}
   comboDuration: 1200
   comboTimer: 0
   isUp: 0
@@ -3506,14 +3578,22 @@ MonoBehaviour:
   ultimateCharge: 40
   specialCharge: 60
   isHitEnemy: 0
-  slashDashSequence1: 0
+  isLowKick: 0
   isRightLowKick: 0
   isLeftLowKick: 0
   isLowKickCooldown: 0
   lowKickCooldown: 1000
   lowKickCooldownCounter: 0
-  shadowlessSequence1: 0
-  shadowlessSequence2: 0
+  lowKickCharge: 20
+  canLoveEmbrace: 0
+  hasLoveEmbrace: 0
+  loveEmbraceCooldown: 1000
+  loveEmbraceCooldownCounter: 0
+  loveEmbraceDuration: 2000
+  loveEmbraceDurationCounter: 0
+  embraceCharge: 20
+  slashDamage: 100
+  hasSlashDash: 0
 --- !u!50 &1492938901
 Rigidbody2D:
   serializedVersion: 4
@@ -3895,7 +3975,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!114 &1595185276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3907,6 +3987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d9c60299351b4da97bf9d1441c4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box2d: {fileID: 0}
+  rb2d: {fileID: 0}
   initialSpeed: 1
   meleeRange: 3
   chargeSpeedFactor: 3
@@ -4268,9 +4350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacf729c35312614791e6a5132bbb171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  srender: {fileID: 0}
+  sync: {fileID: 0}
   isMeleeMode: 1
   isHovering: 0
-  bulletDamage: 0
   speed: 5
   jumpPower: 6
   bulletPrefab: {fileID: 0}
