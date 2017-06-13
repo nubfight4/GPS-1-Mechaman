@@ -167,6 +167,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &135254281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 135254282}
+  - component: {fileID: 135254283}
+  m_Layer: 0
+  m_Name: LowKick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &135254282
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135254281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.04, y: -1.42, z: 0}
+  m_LocalScale: {x: 1.1504685, y: 0.17468712, z: 1}
+  m_Children: []
+  m_Father: {fileID: 200422181}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &135254283
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135254281}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &145009799
 Prefab:
   m_ObjectHideFlags: 0
@@ -390,12 +444,79 @@ Transform:
   m_Children:
   - {fileID: 511415946}
   - {fileID: 1152832781}
-  - {fileID: 1937490303}
-  - {fileID: 1112206025}
+  - {fileID: 1249606986}
+  - {fileID: 293727273}
   - {fileID: 1932862544}
+  - {fileID: 135254282}
   m_Father: {fileID: 458979412}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &293727272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 293727273}
+  - component: {fileID: 293727275}
+  - component: {fileID: 293727274}
+  m_Layer: 0
+  m_Name: MeleeBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &293727273
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293727272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.8399997, y: -0.22000003, z: 0}
+  m_LocalScale: {x: 1.13344, y: 0.125, z: 1}
+  m_Children: []
+  m_Father: {fileID: 200422181}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &293727274
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293727272}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &293727275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293727272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2001da3aa1c613045aa77a8c88cfb05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297257866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,72 +1822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 1419500111319276, guid: 748a14af847c92448a7933589f015aff, type: 2}
---- !u!1 &1112206024
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1112206025}
-  - component: {fileID: 1112206026}
-  - component: {fileID: 1112206027}
-  m_Layer: 0
-  m_Name: MeleeBottom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1112206025
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112206024}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 200422181}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1112206026
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112206024}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1112206027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112206024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2001da3aa1c613045aa77a8c88cfb05f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1144394209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2152,72 @@ Transform:
   m_Father: {fileID: 458979412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1249606985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1249606986}
+  - component: {fileID: 1249606988}
+  - component: {fileID: 1249606987}
+  m_Layer: 0
+  m_Name: MeleeMid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1249606986
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1249606985}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.8399997, y: -0.22000003, z: 0}
+  m_LocalScale: {x: 1.13344, y: 0.125, z: 1}
+  m_Children: []
+  m_Father: {fileID: 200422181}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1249606987
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1249606985}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1249606988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1249606985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2001da3aa1c613045aa77a8c88cfb05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1285975647
 Prefab:
   m_ObjectHideFlags: 0
@@ -3194,11 +3315,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df467b8a05b6a441b5f4e4fac10a799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   rb2d: {fileID: 0}
   srender: {fileID: 0}
   image: {fileID: 0}
   mecha: {fileID: 0}
   box2D: {fileID: 0}
+  goatzilla: {fileID: 0}
+  embrace: {fileID: 0}
   comboGUI: {fileID: 0}
   slashEffectPrefab: {fileID: 1009030382059812, guid: a7c48585a9e3294448d31ef5101330fb,
     type: 2}
@@ -3207,6 +3331,10 @@ MonoBehaviour:
   specialAttackEmpty: {fileID: 0}
   lowKickPrefab: {fileID: 1948735328109018, guid: 87ba458ea246fe940b94decd4548e44a,
     type: 2}
+  specialFistPrefab: {fileID: 0}
+  emptyHaloEffect: {fileID: 0}
+  elevatorAttackPrefab: {fileID: 0}
+  loveEmbraceCollider: {fileID: 0}
   imageW: {fileID: 328264375}
   imageA: {fileID: 1285975648}
   imageS: {fileID: 1953240896}
@@ -3214,11 +3342,6 @@ MonoBehaviour:
   imageLMB: {fileID: 333505919}
   imageRMB: {fileID: 1151076054}
   imageExplode: {fileID: 440576200}
-  specialAttackEmptyClone: {fileID: 0}
-  bulletClone: {fileID: 0}
-  cyanEffectClone: {fileID: 0}
-  slashEffectPrefabClone: {fileID: 0}
-  lowKickPrefabClone: {fileID: 0}
   comboDuration: 1200
   comboTimer: 0
   isUp: 0
@@ -3273,14 +3396,22 @@ MonoBehaviour:
   ultimateCharge: 40
   specialCharge: 60
   isHitEnemy: 0
-  slashDashSequence1: 0
+  isLowKick: 0
   isRightLowKick: 0
   isLeftLowKick: 0
   isLowKickCooldown: 0
   lowKickCooldown: 1000
   lowKickCooldownCounter: 0
-  shadowlessSequence1: 0
-  shadowlessSequence2: 0
+  lowKickCharge: 20
+  canLoveEmbrace: 0
+  hasLoveEmbrace: 0
+  loveEmbraceCooldown: 1000
+  loveEmbraceCooldownCounter: 0
+  loveEmbraceDuration: 2000
+  loveEmbraceDurationCounter: 0
+  embraceCharge: 20
+  slashDamage: 100
+  hasSlashDash: 0
 --- !u!50 &1492938901
 Rigidbody2D:
   serializedVersion: 4
@@ -3319,7 +3450,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.14, y: 2.56}
+    oldSize: {x: 1.14, y: 2.57}
     newSize: {x: 1.8, y: 2.52}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3361,7 +3492,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300014, guid: c97423d16f284ff48a2ff2f45489b50a, type: 3}
+  m_Sprite: {fileID: 21300030, guid: c97423d16f284ff48a2ff2f45489b50a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3674,6 +3805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d9c60299351b4da97bf9d1441c4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box2d: {fileID: 0}
+  rb2d: {fileID: 0}
   initialSpeed: 1
   meleeRange: 3
   chargeSpeedFactor: 3
@@ -3957,72 +4090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2001da3aa1c613045aa77a8c88cfb05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1937490302
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1937490303}
-  - component: {fileID: 1937490304}
-  - component: {fileID: 1937490305}
-  m_Layer: 0
-  m_Name: MeleeMid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1937490303
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937490302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 200422181}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1937490304
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937490302}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1937490305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937490302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2001da3aa1c613045aa77a8c88cfb05f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1940372074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4035,9 +4102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacf729c35312614791e6a5132bbb171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  srender: {fileID: 0}
+  sync: {fileID: 0}
   isMeleeMode: 1
   isHovering: 0
-  bulletDamage: 0
   speed: 5
   jumpPower: 6
   bulletPrefab: {fileID: 0}

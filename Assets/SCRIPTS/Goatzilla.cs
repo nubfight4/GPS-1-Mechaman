@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Goatzilla : LifeObject 
 {
+	public BoxCollider2D box2d;
+	public Rigidbody2D rb2d;
+
 	public float initialSpeed = 1f;
 	public float meleeRange = 3f;
 	public float chargeSpeedFactor = 3f;
