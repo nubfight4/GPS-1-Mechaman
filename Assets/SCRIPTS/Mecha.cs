@@ -7,13 +7,15 @@ using UnityEngine;
 public class Mecha: LifeObject {
 
 
+	public SpriteRenderer srender;
+	public Sync_Attack sync;
+
 	bool canJumpDownPlatform = false;
 	bool isJumping = false;
 	bool isSquating = false;
 	public bool isMeleeMode = false;
 	public bool isHovering = false;
 
-	public float bulletDamage;
 	public float speed;
 	public float jumpPower;
 
@@ -23,14 +25,14 @@ public class Mecha: LifeObject {
 	public GameObject meleePrefab;
 
 	//Melee
-	public float attackRate = 0.3f;
+	public float attackRate = 0.5f;
 	const int TOTAL_ATTACK = 2;
 	bool[] attack = new bool[TOTAL_ATTACK];
 	float[] attackTimer = new float[TOTAL_ATTACK];
 	private float comboTimer = 0;
 	private bool delay = false;
 	private float clickCount = 0;
-	private bool haveTaste = false;
+	bool haveTaste = false;
 	private float tasteTimer = 0;
 
 	//Block
@@ -57,6 +59,7 @@ public class Mecha: LifeObject {
 		SetHP (this.GetMaxHP ());
 		SetAmmoAmount (maxAmmoAmount);
 		anim = GetComponent<Animator> ();
+		srender = gameObject.GetComponent<SpriteRenderer> ();
 	}
 		
 	// Update is called once per frame
@@ -131,7 +134,6 @@ public class Mecha: LifeObject {
 		*/
 
 		}
-			
 	}
 
 	void MeleeAttack()

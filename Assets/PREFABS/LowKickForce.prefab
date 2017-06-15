@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61161175055080156}
   m_Layer: 0
   m_Name: LowKickForce
-  m_TagString: Bullet
+  m_TagString: Low Kick Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

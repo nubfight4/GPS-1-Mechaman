@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Goatzilla : LifeObject 
 {
+	public BoxCollider2D box2d;
+	public Rigidbody2D rb2d;
+
 	public float initialSpeed = 1f;
 	public float meleeRange = 3f;
 	public float chargeSpeedFactor = 3f;
@@ -19,7 +22,7 @@ public class Goatzilla : LifeObject
 	private Direction movingDirection;
 	private bool faceLeft;
 	private bool attacked;
-	private bool isEnraged;
+	public bool isEnraged;
 	private int enrageHpThreshold;
 	private bool nearToTarget;
 	private bool freeze;
@@ -240,14 +243,18 @@ public class Goatzilla : LifeObject
 
 	private void Laser ()
 	{
-		Debug.Log ("Enemy used laser eye!");
 		attacked = true;
 		FaceTarget ();
-		float offsetX = (faceLeft) ? -5.7f : 5.7f, offsetY = 5.9f;
-		Vector3 initPos = new Vector3 (transform.position.x + offsetX, transform.position.y + offsetY);
+		bool isTopToBottom = (target.transform.position.y - transform.position.y >= 0) ? true : false;
+		float offsetX = (faceLeft) ? -5f : 5f, offsetY = 2.5f;
+		Vector3 initPos = (isTopToBottom) ? new Vector3 (transform.position.x + offsetX, transform.position.y + offsetY) : new Vector3 (transform.position.x + offsetX, transform.position.y - offsetY - 2.5f);
 		float initAngle = (faceLeft) ? -45 : 45;
+		initAngle *= (isTopToBottom) ? 1 : -1;
+		anim.SetBool("IsTopToBottom", isTopToBottom);
+		anim.SetTrigger("Laser");
 		GameObject laserEye = Instantiate (eyeLaserPrefab, initPos, Quaternion.Euler (0, 0, initAngle));
 		laserEye.GetComponent<EyeLaser> ().SetIsDirectionFromLeft (faceLeft);
+		laserEye.GetComponent<EyeLaser> ().SetIsTopToBottom (isTopToBottom);
 	}
 
 	private float GetInitialSpeed ()

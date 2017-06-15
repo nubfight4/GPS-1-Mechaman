@@ -7,6 +7,7 @@ public class Player_Camera : MonoBehaviour {
 	public Transform mecha;
 
 	public bool CameraBoundary;
+	public bool Phase2 = false;
 
 	public Vector2 minCameraPos, maxCameraPos;
 
@@ -17,16 +18,20 @@ public class Player_Camera : MonoBehaviour {
 
 	// Update is called once per frame
 	void LateUpdate() {
-		if (mecha != null) {
-			transform.position = new Vector3(mecha.position.x, transform.position.y, transform.position.z);
+
+		if (Phase2 == true) {
+			if (mecha != null) {
+				transform.position = new Vector3(mecha.position.x, transform.position.y, transform.position.z);
+			}
+
+			if (CameraBoundary)
+			{
+				transform.position = 
+					new Vector3(Mathf.Clamp(mecha.position.x, minCameraPos.x, maxCameraPos.x),
+						Mathf.Clamp(transform.position.y, minCameraPos.y, maxCameraPos.y),
+						transform.position.z);
+			}
+		}
 		}
 
-		if (CameraBoundary)
-		{
-			transform.position = 
-				new Vector3(Mathf.Clamp(mecha.position.x, minCameraPos.x, maxCameraPos.x),
-					Mathf.Clamp(transform.position.y, minCameraPos.y, maxCameraPos.y),
-					transform.position.z);
-		}
-	}
 }
