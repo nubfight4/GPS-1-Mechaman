@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HP_Crate : MonoBehaviour {
+public class Damage_Crate : MonoBehaviour {
 
-	public int recovery = 50;
+	public int damage = 50;
 	private float lifeTime = 1.5f;
 
 	void Start () {
@@ -14,10 +14,10 @@ public class HP_Crate : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D target)
 	{
 		if (target.gameObject.CompareTag ("Player")) {
-			target.gameObject.GetComponent<Mecha> ().RecoverHP (recovery);
+			target.gameObject.GetComponent<Mecha> ().ReceiveDamage (damage);
 			Destroy (this.gameObject);
 		} else if (target.gameObject.CompareTag ("Enemy")) {
-			target.gameObject.GetComponent<Goatzilla> ().RecoverHP (recovery);
+			target.gameObject.GetComponent<Goatzilla> ().ReceiveDamage (damage);
 			Destroy (this.gameObject);
 		}
 	}
