@@ -70,17 +70,22 @@ public class Mecha: LifeObject {
 			if (!isRecovering)
 				StartCoroutine (RecoverAmmo ());
 
-			if (Input.GetKeyDown (KeyCode.W) && !isJumping) {	
-				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpPower, ForceMode2D.Impulse);
-				isJumping = true;
+			if (Input.GetKey (KeyCode.W) && !isJumping) {	
+				//GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpPower, ForceMode2D.Impulse);
+				//isJumping = true;
+
+				transform.Translate (Vector3.up * Time.deltaTime * speed);
 			}
 
-			if (Input.GetKeyDown (KeyCode.S)) {
-				if (!isJumping) 
+			if (Input.GetKey (KeyCode.S)) {
+			/*	if (!isJumping) 
 				{
 					isSquating = true;
 				}
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.down * jumpPower, ForceMode2D.Impulse);
+			*/
+
+				transform.Translate (Vector3.down * Time.deltaTime * speed);
 			}
 
 			if (Input.GetKeyUp (KeyCode.S)) 
