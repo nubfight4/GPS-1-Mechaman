@@ -87,18 +87,10 @@ public class TextBoxManager : MonoBehaviour
 
     void tutorial()
     {
-        if (currentLine == 6)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                currentLine = 28;
-            }
-        }
-
-        if (currentLine == 7)
+        if (currentLine == 8) //Movement
         {
             textScroll = false;
-
+			/*
             if (Input.GetKeyDown(KeyCode.A))
             {
                 tutorLeft = true;
@@ -118,6 +110,7 @@ public class TextBoxManager : MonoBehaviour
             {
                 tutorDown = true;
             }
+			
 
             if (tutorJump == true && tutorLeft == true && tutorRight == true && tutorDown == true)
             {
@@ -128,12 +121,13 @@ public class TextBoxManager : MonoBehaviour
                 tutorJump = false;
                 tutorDown = false;
             }
+            */
         }
 
-        if (currentLine == 9)
+        if (currentLine == 11) //Attack n Block
         {
             textScroll = false;
-
+			/*
             if (Input.GetMouseButtonDown(0))
             {
                 Punch = true;
@@ -151,12 +145,13 @@ public class TextBoxManager : MonoBehaviour
                 Block = false;
                 Punch = false;
             }
+            */
         }
 
-        if (currentLine == 11)
+        if (currentLine == 15) //Combo Attack
         {
             textScroll = false;
-
+			/*
             if (Input.GetMouseButtonDown(0))
             {
                 threeWayCombo += 1;
@@ -168,12 +163,13 @@ public class TextBoxManager : MonoBehaviour
                 currentLine += 1;
                 threeWayCombo = 0;
             }
+            */
         }
 
-        if (currentLine == 12)
+        if (currentLine == 17) //Sync Attack
         {
             textScroll = false;
-
+			/*
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 textScroll = true;
@@ -185,59 +181,7 @@ public class TextBoxManager : MonoBehaviour
                 textScroll = true;
                 currentLine += 1;
             }
-        }
-
-        if (currentLine == 13)
-        {
-            textScroll = false;
-
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
-                textScroll = true;
-                currentLine += 1;
-            }
-
-        }
-
-        if (currentLine == 14)
-        {
-            textScroll = false;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                textScroll = true;
-                currentLine += 1;
-            }
-        }
-
-        if (currentLine == 18)
-        {
-            textScroll = false;
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                comboBut1 = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.D) && comboBut1 == true)
-            {
-                comboBut2 = true;
-            }
-
-            if (Input.GetMouseButtonDown(0) && comboBut1 == true && comboBut2 == true)
-            {
-                comboBut3 = true;
-            }
-
-            if (comboBut1 == true && comboBut2 == true && comboBut3 == true)
-            {
-                textScroll = true;
-                currentLine += 1;
-
-                comboBut1 = false;
-                comboBut2 = false;
-                comboBut3 = false;
-            }
+            */
         }
 
         if (currentLine == 21)
@@ -245,68 +189,6 @@ public class TextBoxManager : MonoBehaviour
             currentLine = 101;
         }
 
-        if (currentLine == 23)
-        {
-            textScroll = false;
-
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                currentLine += 1;
-                textScroll = true;
-
-            }
-
-            else if (Input.GetKeyDown(KeyCode.N))
-            {
-                currentLine = 13;
-                textScroll = true;
-
-            }
-        }
-
-        if (currentLine == 25)
-        {
-            textScroll = false;
-
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                textScroll = true;
-                currentLine += 1;
-            }
-
-            else if (Input.GetKeyDown(KeyCode.N))
-            {
-                textScroll = true;
-                currentLine = 13;
-            }
-        }
-
-        if (currentLine == 27)
-        {
-            currentLine = 16;
-        }
-
-        if (currentLine == 28)
-        {
-            textScroll = false;
-
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                textScroll = true;
-                currentLine += 1;
-            }
-
-            else if (Input.GetKeyDown(KeyCode.N))
-            {
-                textScroll = true;
-                currentLine = 6;
-            }
-        }
-
-        if (currentLine == 31)
-        {
-            currentLine += 70;
-        }
     }
 }
 
