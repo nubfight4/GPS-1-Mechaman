@@ -4,24 +4,23 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TextBoxManager : MonoBehaviour
+public class TutorialManager : MonoBehaviour
 {
     bool levelTutorial = true;
     [SerializeField]
     bool textScroll = true;
 
     //Tutorial Level Bool
-    bool tutorLeft = false;
-    bool tutorRight = false;
-    bool tutorJump = false;
-    bool tutorDown = false;
-    bool Punch = false;
-    bool Block = false;
-    bool comboBut1 = false;
-    bool comboBut2 = false;
-    bool comboBut3 = false;
+	bool tutorNormalAtk;
+	bool tutorHeavyAtk;
+	bool tutorBlock;
+	bool tutorShadowlessStrike;
+	bool tutorPause;
+	bool tutorSyncAtk;
+
+	public Vector3 gamepadPos;
     
-    int threeWayCombo = 0;
+   // int threeWayCombo = 0;
 
     public GameObject textBox;
 
@@ -37,6 +36,13 @@ public class TextBoxManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		tutorNormalAtk = false;
+		tutorHeavyAtk = false;
+		tutorBlock = false;
+		tutorShadowlessStrike = false;
+		tutorPause = false;
+		tutorSyncAtk = false;
+
         if (textFile != null)
         {
             textLine = (textFile.text.Split('\n'));
@@ -54,8 +60,11 @@ public class TextBoxManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
+    void Update()
+	{
+		gamepadPos.x = Input.GetAxis ("Horizontal");
+		gamepadPos.y = Input.GetAxis ("Vertical");
+
         theText.text = textLine[currentLine];
 
         if (textScroll == true)
@@ -87,9 +96,18 @@ public class TextBoxManager : MonoBehaviour
 
     void tutorial()
     {
-        if (currentLine == 8) //Movement
+        if (currentLine == 7) //Movement
         {
             textScroll = false;
+
+			if (gamepadPos.x > 0.1 || gamepadPos.x < -0.1) 
+			{
+				if (gamepadPos.y > 0.1 || gamepadPos.y < -0.1) {
+					textScroll = true;
+					currentLine += 1;
+				}
+			}
+
 			/*
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -124,9 +142,31 @@ public class TextBoxManager : MonoBehaviour
             */
         }
 
-        if (currentLine == 11) //Attack n Block
+        if (currentLine == 10) //Attack n Block
         {
             textScroll = false;
+
+			if (Input.GetKeyDown (KeyCode.Joystick1Button2)) 
+			{ 
+				tutorNormalAtk = true;
+			}
+
+			if (Input.GetKeyDown (KeyCode.Joystick1Button0)) 
+			{
+				tutorHeavyAtk = true;
+			}
+
+			if (Input.GetKeyDown (KeyCode.Joystick1Button1)) {
+				tutorBlock = true;
+			}
+
+			if (tutorNormalAtk == true && tutorHeavyAtk == true && tutorBlock == true)
+			{
+				textScroll = true;
+				currentLine += 1;
+			}
+
+
 			/*
             if (Input.GetMouseButtonDown(0))
             {
@@ -145,10 +185,10 @@ public class TextBoxManager : MonoBehaviour
                 Block = false;
                 Punch = false;
             }
-            */
+			*/
         }
 
-        if (currentLine == 15) //Combo Attack
+        if (currentLine == 14) //Combo Attack
         {
             textScroll = false;
 			/*
@@ -166,7 +206,7 @@ public class TextBoxManager : MonoBehaviour
             */
         }
 
-        if (currentLine == 17) //Sync Attack
+        if (currentLine == 16) //Sync Attack
         {
             textScroll = false;
 			/*
@@ -191,4 +231,5 @@ public class TextBoxManager : MonoBehaviour
 
     }
 }
+
 
