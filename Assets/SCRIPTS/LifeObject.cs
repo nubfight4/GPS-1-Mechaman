@@ -45,11 +45,6 @@ public class LifeObject : MonoBehaviour {
 		this.HP -= value;
 	}
 
-	public void RecoverHP (int value)
-	{
-		this.HP += value;
-	}
-
 	public void Knockback(Vector3 knockbackDir, float knockbackPower)
 	{
 		Vector2 v2 = new Vector2 (knockbackDir.x, knockbackDir.y);

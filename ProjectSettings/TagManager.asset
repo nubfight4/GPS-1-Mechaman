@@ -5,12 +5,22 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Special Attack
   - Bullet
   - Crate_Drop
   - Wall
   - Platforms
   - Ground
+  - Elevator Attack
+  - Low Kick Attack
+  - Special Fist Attack
+  - Embrace Attack
+  - Slash Attack
+  - Shadowless Attack
+  - Embrace Collider
+  - Me Smash Attack
+  - Lets Dance Collider
+  - Orb Bullet
+  - Shield Collider
   layers:
   - Default
   - TransparentFX
