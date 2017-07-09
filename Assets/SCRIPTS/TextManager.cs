@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TutorialManager : MonoBehaviour
+public class TextManager : MonoBehaviour
 {
     bool levelTutorial = true;
     [SerializeField]
