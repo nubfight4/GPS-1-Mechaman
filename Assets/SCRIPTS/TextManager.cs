@@ -13,7 +13,6 @@ public class TextManager : MonoBehaviour
     //Tutorial Level Bool
 	bool tutorNormalAtk;
 	bool tutorHeavyAtk;
-	bool tutorBlock;
 	bool tutorShadowlessStrike;
 	bool tutorPause;
 	bool tutorSyncAtk;
@@ -63,7 +62,6 @@ public class TextManager : MonoBehaviour
     void Update()
 	{
 		gamepadPos.x = Input.GetAxis ("Horizontal");
-		gamepadPos.y = Input.GetAxis ("Vertical");
 
         theText.text = textLine[currentLine];
 
@@ -96,16 +94,15 @@ public class TextManager : MonoBehaviour
 
     void tutorial()
     {
-        if (currentLine == 7) //Movement
+        if (currentLine == 5) //Movement
         {
             textScroll = false;
 
-			if (gamepadPos.x > 0.1 || gamepadPos.x < -0.1) 
+			if (gamepadPos.x > 0.01 || gamepadPos.x < -0.01) 
 			{
-				if (gamepadPos.y > 0.1 || gamepadPos.y < -0.1) {
 					textScroll = true;
 					currentLine += 1;
-				}
+
 			}
 
 			/*
@@ -142,25 +139,22 @@ public class TextManager : MonoBehaviour
             */
         }
 
-        if (currentLine == 10) //Attack n Block
+        if (currentLine == 8) //Attack n Block
         {
             textScroll = false;
 
-			if (Input.GetKeyDown (KeyCode.Joystick1Button2)) 
+			if Input.GetButtonDown("Normal Attack")
 			{ 
 				tutorNormalAtk = true;
 			}
 
-			if (Input.GetKeyDown (KeyCode.Joystick1Button0)) 
+			if Input.GetButtonDown("Heavy Attack") 
 			{
 				tutorHeavyAtk = true;
 			}
+				
 
-			if (Input.GetKeyDown (KeyCode.Joystick1Button1)) {
-				tutorBlock = true;
-			}
-
-			if (tutorNormalAtk == true && tutorHeavyAtk == true && tutorBlock == true)
+			if (tutorNormalAtk == true && tutorHeavyAtk == true)
 			{
 				textScroll = true;
 				currentLine += 1;
@@ -188,7 +182,7 @@ public class TextManager : MonoBehaviour
 			*/
         }
 
-        if (currentLine == 14) //Combo Attack
+        if (currentLine == 9) //Combo Attack
         {
             textScroll = false;
 			/*
@@ -206,7 +200,7 @@ public class TextManager : MonoBehaviour
             */
         }
 
-        if (currentLine == 16) //Sync Attack
+        if (currentLine == 11) //Sync Attack
         {
             textScroll = false;
 			/*
@@ -224,7 +218,13 @@ public class TextManager : MonoBehaviour
             */
         }
 
-        if (currentLine == 21)
+		if (currentLine == 13) //Special Attack
+		{
+			textScroll = false;
+
+		}
+
+        if (currentLine == 15)
         {
             currentLine = 101;
         }

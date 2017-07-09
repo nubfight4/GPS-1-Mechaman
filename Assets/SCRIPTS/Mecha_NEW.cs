@@ -40,12 +40,12 @@ public class Mecha_NEW : MonoBehaviour {
 			isStop = false;
 		}
 	
-		if (Input.GetKeyDown (KeyCode.Joystick1Button2)) 
+		if (Input.GetButtonDown("Normal Attack")) 
 		{ 
 			Debug.Log ("Normal Attack!");
 		}
 
-		if (Input.GetKeyDown (KeyCode.Joystick1Button0)) 
+		if (Input.GetButtonDown("Heavy Attack")) 
 		{
 			Debug.Log ("Heavy Attack!");
 		}
