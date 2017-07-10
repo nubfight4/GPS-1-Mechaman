@@ -13,8 +13,8 @@ public class TextManager : MonoBehaviour
     //Tutorial Level Bool
 	bool tutorNormalAtk;
 	bool tutorHeavyAtk;
-	bool tutorShadowlessStrike;
-	bool tutorPause;
+	bool tutorComboAtk;
+	bool tutorSpecialAtk;
 	bool tutorSyncAtk;
 
 	public Vector3 gamepadPos;
@@ -37,8 +37,10 @@ public class TextManager : MonoBehaviour
     {
 		tutorNormalAtk = false;
 		tutorHeavyAtk = false;
-		tutorShadowlessStrike = false;
-		tutorPause = false;
+		//tutorShadowlessStrike = false;
+		//tutorPause = false;
+		tutorComboAtk = false;
+		tutorSpecialAtk = false;
 		tutorSyncAtk = false;
 
         if (textFile != null)
@@ -66,7 +68,7 @@ public class TextManager : MonoBehaviour
 
         if (textScroll == true)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+			if (Input.GetButtonDown("Enter"))
             {
                 currentLine += 1;
             }
@@ -146,8 +148,9 @@ public class TextManager : MonoBehaviour
 			{ 
 				tutorNormalAtk = true;
 			}
-
+				
 			if (Input.GetButtonDown("Heavy Attack")) 
+			if (Input.GetButtonDown("Heavy Attack"))
 			{
 				tutorHeavyAtk = true;
 			}
@@ -217,11 +220,11 @@ public class TextManager : MonoBehaviour
             */
         }
 
-		if (currentLine == 13) //Special Attack
-		{
-			textScroll = false;
-
-		}
+//		if (currentLine == 13) //Special Attack
+//		{
+//			textScroll = false;
+//
+//		}
 
         if (currentLine == 15)
         {

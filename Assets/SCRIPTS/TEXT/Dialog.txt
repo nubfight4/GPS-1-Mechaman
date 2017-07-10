@@ -1,4 +1,4 @@
-Welcome to the training simulation system, rookies. (Press enter to proceed)
+Welcome to the training simulation system, rookies. (Press B (on controller) or Enter to proceed)
 I will be teaching you amazing stuff about this Mecha. 
 The blue bar up there is your health bar and the red one is your enemy's health bar.
 Now, it's time for you two to learn some combat skills. 
@@ -10,5 +10,5 @@ Try your best to fight against this extremely scary and vicious enemy.
 *Press the X button three times to perform a combo attack*
 Alright, now both pilots try to work together and do some synchronized attacks.
 *Perform a synchronized attack!*
-Now both of you, try to perform a special attack together to bring out Mechaman’s true potential!
+Now before you two leave, try to perform a special attack together to bring out Mechaman’s true potential!
 *Perform a special attack!*
