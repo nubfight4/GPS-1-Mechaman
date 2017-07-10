@@ -745,6 +745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7721dd87e050442498f621ec6ea9c4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu1: {fileID: 0}
+  menu2: {fileID: 0}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
 --- !u!61 &277004928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6487,7 +6491,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838914992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a2e3f42433b7e44a85e1c27c076345, type: 3}
+  m_Script: {fileID: 11500000, guid: 44f6169b122f70b4f945d5da48839052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1838914995
