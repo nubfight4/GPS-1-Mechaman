@@ -17,14 +17,8 @@ public class TextManager : MonoBehaviour
 	bool tutorSpecialAtk;
 	bool tutorSyncAtk;
 
-	//Other Bools
-	int mechaTimePressedNormal;
 	public Vector3 gamepadPos;
-	bool startReset;
-	float resetTimer;
-	float resetDuration;
-	public int doorspeed;
-   
+    
    // int threeWayCombo = 0;
 
     public GameObject textBox;
@@ -41,17 +35,13 @@ public class TextManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		
 		tutorNormalAtk = false;
 		tutorHeavyAtk = false;
+		//tutorShadowlessStrike = false;
+		//tutorPause = false;
 		tutorComboAtk = false;
 		tutorSpecialAtk = false;
 		tutorSyncAtk = false;
-
-		startReset = false;
-		mechaTimePressedNormal = 0;
-		resetTimer = 0f;
-		resetDuration = 0.5f;
 
         if (textFile != null)
         {
@@ -73,9 +63,8 @@ public class TextManager : MonoBehaviour
     void Update()
 	{
 		gamepadPos.x = Input.GetAxis ("Horizontal");
-		gamepadPos.y = Input.GetAxis ("Vertical");
 
-        theText.text = textLine[currentLine];
+//        theText.text = textLine[currentLine];
 
         if (textScroll == true)
         {
@@ -91,38 +80,21 @@ public class TextManager : MonoBehaviour
             textBox.SetActive(false);
         }
 
-		if(startReset)
-		{
-			resetTimer += Time.deltaTime;
-			if(resetTimer >= resetDuration)
-			{
-				resetTimer = 0;
-				mechaTimePressedNormal = 0;
-				startReset = false;
-			}
-		}
-
         levelSelection();
         tutorial();
     }
 
     void levelSelection()
     {
-        if (currentLine == 14) //level 1
+        if (currentLine == 101) //level 1
         {
             SceneManager.LoadScene("GameScene");
-            //currentLine = 20;
+            currentLine = 20;
         }
     }
 
     void tutorial()
     {
-		if (currentLine == 3) 
-		{
-			GameObject.FindGameObjectWithTag ("TutorialDummy").GetComponent<SpriteRenderer> ().enabled = true;
-			GameObject.FindGameObjectWithTag ("TutorialDummyLight").GetComponent<SpriteRenderer> ().enabled = true;
-		}
-
         if (currentLine == 5) //Movement
         {
             textScroll = false;
@@ -177,6 +149,7 @@ public class TextManager : MonoBehaviour
 				tutorNormalAtk = true;
 			}
 				
+			if (Input.GetButtonDown("Heavy Attack")) 
 			if (Input.GetButtonDown("Heavy Attack"))
 			{
 				tutorHeavyAtk = true;
@@ -214,88 +187,49 @@ public class TextManager : MonoBehaviour
         if (currentLine == 9) //Combo Attack
         {
             textScroll = false;
+			/*
+            if (Input.GetMouseButtonDown(0))
+            {
+                threeWayCombo += 1;
+            }
 
-
-			if (Input.GetButtonDown("Normal Attack"))
-			{ 
-				mechaTimePressedNormal++;
-			}
-
-
-			if (mechaTimePressedNormal == 3) 
-			{
-				tutorComboAtk = true;
-			}
-
-			if (tutorComboAtk == true)
-			{
-				textScroll = true;
-				currentLine += 1;
-			}
-
-
-//            if (Input.GetMouseButtonDown(0))
-//            {
-//                threeWayCombo += 1;
-//            }
-//
-//            if (threeWayCombo == 3)
-//            {
-//                textScroll = true;
-//                currentLine += 1;
-//                threeWayCombo = 0;
-//            }
-
+            if (threeWayCombo == 3)
+            {
+                textScroll = true;
+                currentLine += 1;
+                threeWayCombo = 0;
+            }
+            */
         }
 
         if (currentLine == 11) //Sync Attack
         {
             textScroll = false;
+			/*
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                textScroll = true;
+                currentLine = 22;
+            }
 
-			if(gamepadPos.y > 0.01)
-			{
-				if(Input.GetButtonDown("Normal Attack"))
-				{
-					tutorSyncAtk = true;
-				}
-			}
-
-			if (tutorSyncAtk == true)
-			{
-				textScroll = true;
-				currentLine += 1;
-			}
-
-
-//            if (Input.GetKeyDown(KeyCode.Y))
-//            {
-//                textScroll = true;
-//                currentLine = 22;
-//            }
-//
-//            else if (Input.GetKeyDown(KeyCode.N))
-//            {
-//                textScroll = true;
-//                currentLine += 1;
-//            }
-
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                textScroll = true;
+                currentLine += 1;
+            }
+            */
         }
-
-		if (currentLine == 14) 
-		{
-			GameObject.FindGameObjectWithTag ("TutorialDoor").GetComponent<Transform> ().Translate (Vector3.up * Time.deltaTime * doorspeed);
-		}
-
 
 //		if (currentLine == 13) //Special Attack
 //		{
 //			textScroll = false;
 //
 //		}
-//        if (currentLine == 15)
-//        {
-//            currentLine = 101;
-//        }
+
+        if (currentLine == 15)
+        {
+            currentLine = 101;
+        }
 
     }
 }
