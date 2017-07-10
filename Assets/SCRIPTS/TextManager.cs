@@ -37,7 +37,6 @@ public class TextManager : MonoBehaviour
     {
 		tutorNormalAtk = false;
 		tutorHeavyAtk = false;
-		tutorBlock = false;
 		tutorShadowlessStrike = false;
 		tutorPause = false;
 		tutorSyncAtk = false;
@@ -143,12 +142,12 @@ public class TextManager : MonoBehaviour
         {
             textScroll = false;
 
-			if Input.GetButtonDown("Normal Attack")
+			if (Input.GetButtonDown("Normal Attack"))
 			{ 
 				tutorNormalAtk = true;
 			}
 
-			if Input.GetButtonDown("Heavy Attack") 
+			if (Input.GetButtonDown("Heavy Attack")) 
 			{
 				tutorHeavyAtk = true;
 			}
