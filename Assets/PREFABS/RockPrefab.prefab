@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4546262009413198}
   - component: {fileID: 212118009262595690}
-  - component: {fileID: 58278428661558486}
-  - component: {fileID: 50306986093725546}
-  - component: {fileID: 114558777494334096}
+  - component: {fileID: 58339719611338358}
+  - component: {fileID: 50075359890040830}
+  - component: {fileID: 114841644333277686}
   m_Layer: 0
   m_Name: RockPrefab
   m_TagString: Untagged
@@ -36,14 +36,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572202794334154}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.75, y: 3.65, z: 0}
-  m_LocalScale: {x: 1.4536521, y: 1.4536521, z: 1.4536521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7, y: 1.88, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50306986093725546
+--- !u!50 &50075359890040830
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -57,13 +57,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58278428661558486
+--- !u!58 &58339719611338358
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -77,8 +77,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.49999994
---- !u!114 &114558777494334096
+  m_Radius: 1.36
+--- !u!114 &114841644333277686
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,8 +122,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 588ee10611b2dd94b8fba357d48925a4, type: 3}
-  m_Color: {r: 0.2352941, g: 0.23010379, b: 0.23010379, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a4cf83820433b42488fc95ac70c60e6b, type: 3}
+  m_Color: {r: 0.8088235, g: 0.79692906, b: 0.79692906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

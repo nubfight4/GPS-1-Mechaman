@@ -52,12 +52,13 @@ public class Mecha: LifeObject {
 	void Awake()
 	{
 		//		attackTrigger.enabled = false;
-	}
-	// Use this for initialization
-	void Start () {
 		SetMaxHP (500);
 		SetHP (this.GetMaxHP ());
 		SetAmmoAmount (maxAmmoAmount);
+	}
+	// Use this for initialization
+	void Start () 
+	{
 		anim = GetComponent<Animator> ();
 		srender = gameObject.GetComponent<SpriteRenderer> ();
 	}
@@ -67,8 +68,8 @@ public class Mecha: LifeObject {
 		if (isAlive) {
 			CheckDeath ();
 
-			if (!isRecovering)
-				StartCoroutine (RecoverAmmo ());
+//			if (!isRecovering)
+//				StartCoroutine (RecoverAmmo ());
 
 			if (Input.GetKeyDown (KeyCode.W) && !isJumping) {	
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -274,7 +275,7 @@ public class Mecha: LifeObject {
 
 	public float GetAmmoAmountByPercentage ()
 	{
-		return (float)GetAmmoAmount () / maxAmmoAmount;
+		return GetAmmoAmount () * 100f / maxAmmoAmount;
 	}
 
 	public bool UseAmmo (int amount)
@@ -286,14 +287,20 @@ public class Mecha: LifeObject {
 		return false;
 	}
 
-	private IEnumerator RecoverAmmo ()
+//	private IEnumerator RecoverAmmo ()
+//	{
+//		isRecovering = true;
+//		while (true) {
+//			yield return new WaitForSeconds (3); // every 3s recover 1 ammo
+//			if (GetAmmoAmount () < maxAmmoAmount)
+//				SetAmmoAmount (GetAmmoAmount () + 1);
+//		}
+//		isRecovering = false;
+//	}
+
+	public override void ReceiveDamage(int dmg)
 	{
-		isRecovering = true;
-		while (true) {
-			yield return new WaitForSeconds (3);
-			if (GetAmmoAmount () < maxAmmoAmount)
-				SetAmmoAmount (GetAmmoAmount () + 1);
-		}
-		isRecovering = false;
+		base.ReceiveDamage (dmg);
+		//! Tell UI Health Bar to Reduce health
 	}
 }

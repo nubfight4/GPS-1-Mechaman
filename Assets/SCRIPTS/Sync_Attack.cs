@@ -131,7 +131,7 @@ public class Sync_Attack : MonoBehaviour {
 	void Update () 
 	{
 		KeyPress ();
-		anim.SetBool("isLowKick",isRightLowKick);
+//		anim.SetBool("isLowKick",isRightLowKick);
 	}
 
 	void FixedUpdate ()

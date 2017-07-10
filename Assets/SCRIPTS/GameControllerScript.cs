@@ -13,7 +13,7 @@ public class GameControllerScript : MonoBehaviour {
 	private GameObject endScene;
 	private SpriteRenderer endRend;
 	private Mecha mechaScript;
-	private Shooting shootScript;
+//	private Shooting shootScript;
 	private Sync_Attack sAttackScript;
 
 	void Start()
@@ -22,7 +22,7 @@ public class GameControllerScript : MonoBehaviour {
 		mecha = GameObject.FindGameObjectWithTag("Player").gameObject;
 		enemy = GameObject.FindGameObjectWithTag("Enemy").gameObject;
 		mechaScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Mecha>();
-		shootScript = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Shooting>();
+//		shootScript = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Shooting>();
 		sAttackScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Sync_Attack>();
 		pauseScene = Camera.main.transform.Find("PauseMenu").gameObject;
 		endScene = Camera.main.transform.Find("EndScene").gameObject;
@@ -46,7 +46,7 @@ public class GameControllerScript : MonoBehaviour {
 				Time.timeScale = 0;
 				pauseScene.SetActive(true);
 				mechaScript.GetComponent<Mecha>().enabled = false;
-				shootScript.GetComponent<Shooting>().enabled = false;
+//				shootScript.GetComponent<Shooting>().enabled = false;
 				sAttackScript.GetComponent<Sync_Attack>().enabled = false;
 			}
 			else if (!paused)
@@ -54,7 +54,7 @@ public class GameControllerScript : MonoBehaviour {
 				Time.timeScale = 1;
 				pauseScene.SetActive(false);
 				mechaScript.GetComponent<Mecha>().enabled = true;
-				shootScript.GetComponent<Shooting>().enabled = true;
+//				shootScript.GetComponent<Shooting>().enabled = true;
 				sAttackScript.GetComponent<Sync_Attack>().enabled = true;
 			}	
 		}
