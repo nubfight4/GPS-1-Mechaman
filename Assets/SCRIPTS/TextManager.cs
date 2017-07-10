@@ -108,10 +108,10 @@ public class TextManager : MonoBehaviour
 
     void levelSelection()
     {
-        if (currentLine == 101) //level 1
+        if (currentLine == 14) //level 1
         {
             SceneManager.LoadScene("GameScene");
-            currentLine = 20;
+            //currentLine = 20;
         }
     }
 

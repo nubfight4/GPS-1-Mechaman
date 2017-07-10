@@ -12,4 +12,3 @@ Alright before you two leave, now both pilots try to work together and do some s
 * Movement pilot try to move up while the attacking pilot does a normal attack at the same time! *
 You guys can check the other moves that Mechaman has in the Controls page from the Pause menu.
 Now off you go!
- 
