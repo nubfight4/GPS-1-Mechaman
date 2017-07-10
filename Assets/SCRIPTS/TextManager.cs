@@ -23,6 +23,7 @@ public class TextManager : MonoBehaviour
 	bool startReset;
 	float resetTimer;
 	float resetDuration;
+	public int doorspeed;
    
    // int threeWayCombo = 0;
 
@@ -116,6 +117,12 @@ public class TextManager : MonoBehaviour
 
     void tutorial()
     {
+		if (currentLine == 3) 
+		{
+			GameObject.FindGameObjectWithTag ("TutorialDummy").GetComponent<SpriteRenderer> ().enabled = true;
+			GameObject.FindGameObjectWithTag ("TutorialDummyLight").GetComponent<SpriteRenderer> ().enabled = true;
+		}
+
         if (currentLine == 5) //Movement
         {
             textScroll = false;
@@ -209,14 +216,13 @@ public class TextManager : MonoBehaviour
             textScroll = false;
 
 
-
 			if (Input.GetButtonDown("Normal Attack"))
 			{ 
 				mechaTimePressedNormal++;
 			}
 
 
-			if (mechaTimePressedNormal == 2) 
+			if (mechaTimePressedNormal == 3) 
 			{
 				tutorComboAtk = true;
 			}
@@ -274,6 +280,11 @@ public class TextManager : MonoBehaviour
 //            }
 
         }
+
+		if (currentLine == 14) 
+		{
+			GameObject.FindGameObjectWithTag ("TutorialDoor").GetComponent<Transform> ().Translate (Vector3.up * Time.deltaTime * doorspeed);
+		}
 
 
 //		if (currentLine == 13) //Special Attack
