@@ -11,6 +11,12 @@ TagManager:
   - Wall
   - Platforms
   - Ground
+  - Elevator Attack
+  - Low Kick Attack
+  - Special Fist Attack
+  - Embrace Attack
+  - ShowOnPause
+  - ShowOnMainMenu
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,7 @@ public class GameControllerScript : MonoBehaviour {
 		pauseScene = Camera.main.transform.Find("PauseMenu").gameObject;
 		endScene = Camera.main.transform.Find("EndScene").gameObject;
 		endRend = endScene.GetComponent<SpriteRenderer>();
-		menu = pauseScene.GetComponent<PauseMenuScript>().menu1;
+		//menu = pauseScene.GetComponent<PauseMenuScript>().menu1;
 		 
 	}
 

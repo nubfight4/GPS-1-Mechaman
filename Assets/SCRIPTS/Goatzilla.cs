@@ -53,6 +53,15 @@ public class Goatzilla : LifeObject
 
 	void Update () 
 	{
+		if(PauseOnPress.Instance.paused)
+		{
+			GetComponent<Animator>().speed = 0.0f;
+			return;
+		}
+		else
+		{
+			GetComponent<Animator>().speed = 1.0f;
+		}
 		if (target != null) {
 			if (isAlive) {
 				CheckDeath ();

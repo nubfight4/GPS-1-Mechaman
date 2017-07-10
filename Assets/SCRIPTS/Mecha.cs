@@ -64,6 +64,15 @@ public class Mecha: LifeObject {
 		
 	// Update is called once per frame
 	void Update () {
+		if(PauseOnPress.Instance.paused)
+		{
+			GetComponent<Animator>().speed = 0.0f;
+			return;
+		}
+		else
+		{
+			GetComponent<Animator>().speed = 1.0f;
+		}
 		if (isAlive) {
 			CheckDeath ();
 
