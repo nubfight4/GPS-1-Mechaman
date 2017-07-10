@@ -5,12 +5,13 @@ using UnityEngine;
 
 
 public class Mecha_NEW : MonoBehaviour {
-	Vector3 gamepadPos;
+	public Vector3 gamepadPos;
 	Vector3 minPos;
 	Vector3 maxPos;
 
-	//Temporary
+
 	private Animator anim;
+	private SpriteRenderer sprite;
 	bool isJumping;
 	bool isStop;
 
@@ -18,21 +19,19 @@ public class Mecha_NEW : MonoBehaviour {
 	void Start () {
 		isJumping = false; 
 		isStop = false;
-		maxPos.x = 2.55f;
+		maxPos.x = 1.4f;
 		//maxPos.y = -1.0f;
-		minPos.x = -8.85f;
+		minPos.x = -7.8f;
 		//minPos.y = -2.25f;
 		anim = GetComponent<Animator> ();
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Boundary ();
 		UpdateAnimator ();
-		gamepadPos.x = Input.GetAxis ("Horizontal");
-		//gamepadPos.y = Input.GetAxis ("Vertical");
-		transform.position = gamepadPos + transform.position;
+		Movement ();
+		
 
 		if (gamepadPos.x == 0) {
 			isStop = true;
@@ -68,7 +67,24 @@ public class Mecha_NEW : MonoBehaviour {
 //		}
 	}
 
-	void Boundary() {
+	void Movement()
+	{
+		gamepadPos.x = Input.GetAxis ("Horizontal");
+		//gamepadPos.y = Input.GetAxis ("Vertical");
+		transform.position = gamepadPos + transform.position;
+
+		if (gamepadPos.x < -0.05) 
+		{
+			transform.localScale = new Vector3 (-1, transform.localScale.y);
+		}
+		if (gamepadPos.x > 0.05) 
+		{
+			transform.localScale = new Vector3 (1, transform.localScale.y);	
+		}
+	}
+
+	void Boundary() 
+	{
 
 		if (transform.position.x > maxPos.x) 
 		{
@@ -91,9 +107,12 @@ public class Mecha_NEW : MonoBehaviour {
 //		}
 	}
 
-	void UpdateAnimator(){
-		anim.SetFloat ("Speed", gamepadPos.x);
-		anim.SetBool ("isJumping", isJumping);
-		anim.SetBool ("isStop", isStop);
+	void UpdateAnimator()
+	{
+//		anim.SetFloat ("Speed", gamepadPos.x);
+//		anim.SetBool ("isJumping", isJumping);
+//		anim.SetBool ("isStop", isStop);
+
+
 	}
 }
