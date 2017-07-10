@@ -14,13 +14,13 @@ public class Mecha_NEW : MonoBehaviour {
 	private SpriteRenderer sprite;
 	bool isJumping;
 	bool isStop;
-	//! Combo and Syncgronise attack
+	//! Combo and Synchronise attack
 	const int MAX_COMBOCOUNT = 5;
 	bool[] attacks;
 	bool p1Pressed;
 	bool p2Pressed;
-	int timePressedNormal;
-	int timePressedHeavy;
+	public int timePressedNormal;
+	public int timePressedHeavy;
 		//reset
 	bool startReset;
 	float resetTimer;
@@ -141,7 +141,7 @@ public class Mecha_NEW : MonoBehaviour {
 		//anim.SetBool ("isStop", isStop);
 	}
 
-	void Combo()
+	public void Combo()
 	{
 		if (gamepadPos.x == 0) {
 			isStop = true;
