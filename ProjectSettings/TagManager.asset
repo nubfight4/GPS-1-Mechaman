@@ -17,6 +17,8 @@ TagManager:
   - Embrace Attack
   - ShowOnPause
   - ShowOnMainMenu
+  - PrefabManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX

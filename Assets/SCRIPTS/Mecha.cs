@@ -154,7 +154,7 @@ public class Mecha: LifeObject {
 		}
 		if(delay)
 		{
-			canBlock = false;
+            canBlock = false;
 			if(Input.GetMouseButtonDown(1))
 			{
 				haveTaste = true;

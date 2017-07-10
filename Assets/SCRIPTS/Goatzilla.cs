@@ -210,7 +210,8 @@ public class Goatzilla : LifeObject
 	{
 		attacked = true;
 		if (GetDistanceFromTarget () <= meleeRange) {
-			FaceTarget ();
+            Sound_Manager_Script.Instance.PlaySFX(AudioClipID.GOATZILLA_GROWL);
+            FaceTarget ();
 			Vector3 dir = new Vector3 ((target.transform.position.x - transform.position.x) * 1.2f, 2);
 			anim.SetTrigger ("Slash");
 			StartCoroutine (ApplyDamageWithDelay (40, 1.2f));
@@ -220,7 +221,10 @@ public class Goatzilla : LifeObject
 	private void ThrowRock ()
 	{
 		attacked = true;
-		anim.SetTrigger ("ThrowRock");
+
+        Sound_Manager_Script.Instance.PlaySFX(AudioClipID.GOATZILLA_GROWL);
+
+        anim.SetTrigger ("ThrowRock");
 		Vector3 initPos = new Vector3 (target.transform.position.x, 1.5f);
 		Instantiate (rockIndicatorPrefab, initPos, Quaternion.identity);
 	}
@@ -254,7 +258,8 @@ public class Goatzilla : LifeObject
 	{
 		attacked = true;
 		FaceTarget ();
-		bool isTopToBottom = (target.transform.position.y - transform.position.y >= 0) ? true : false;
+        Sound_Manager_Script.Instance.PlaySFX(AudioClipID.GOATZILLA_GROWL);
+        bool isTopToBottom = (target.transform.position.y - transform.position.y >= 0) ? true : false;
 		float offsetX = (faceLeft) ? -5f : 5f, offsetY = 2.5f;
 		Vector3 initPos = (isTopToBottom) ? new Vector3 (transform.position.x + offsetX, transform.position.y + offsetY) : new Vector3 (transform.position.x + offsetX, transform.position.y - offsetY - 2.5f);
 		float initAngle = (faceLeft) ? -45 : 45;
