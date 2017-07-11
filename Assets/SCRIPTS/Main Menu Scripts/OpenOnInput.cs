@@ -8,7 +8,7 @@ public class OpenOnInput : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		
-        if(Input.GetKey(KeyCode.Q) && (Input.GetKey(KeyCode.U)))
+		if(Input.GetButton("Bumper_Left_P1") && Input.GetButton("Bumper_Right_P2"))
         {
 			SceneManager.LoadScene("MainMenuScene");
         }
