@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dd858d4a10e029041b230afc93a94002
-timeCreated: 1499596097
+timeCreated: 1499701985
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -160,19 +160,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1200
-        y: 0
-        width: 600
-        height: 550
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: goatzilla_sprite_throw rock_7
-      rect:
-        serializedVersion: 2
-        x: 1800
         y: 0
         width: 600
         height: 550

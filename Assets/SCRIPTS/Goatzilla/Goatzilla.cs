@@ -9,32 +9,43 @@ public class Goatzilla : LifeObject
 	public BoxCollider2D box2d;
 	public Rigidbody2D rb2d;
 
-	public float rockSpawnHeight = 5.0f;
 	public float initialSpeed = 1f; // Phase 1 initial speed
+	public float walkTimer = 0.0f;
+
+	//! Melee
 	public float meleeRange = 3.5f; // Melee Distance 1f = 100px
 	public float meleeTimer = 0.0f;
 	public float meleeDuration = 1.0f;
-	//	public float chargeSpeedFactor = 3f; // Phase 2 charge speed
-	public float walkTimer = 0.0f;
 
 	//! Rock
 	public float rockTimer = 0.0f;
 	public float rockDuration = 3.0f;
+	public float rockSpawnHeight = 20.0f;
 	private int rockCounter = 0;
-	private int rockThrowCounter = 0;
+	public int rockThrowCounter = 0;
+	bool randRockThrow = false;
+	int randRockChoice = -1;
+	bool isThrowRock1 = false;
+	public GameObject rockPrefab;
+	//public GameObject rockIndicatorPrefab;
 
 	//! Acid
 	public float acidTimer = 0.0f;
 	public float acidDuration = 1.0f;
+	public float delayForAcidTimer = 0.0f;
+	public float delayForAcidDuration = 2.0f;
 	bool isAcidSpit = false;
+	public GameObject acidProjectilePrefab;
 	Vector3 spitPos;
 
-	public GameObject rockIndicatorPrefab;
-//	public GameObject eyeLaserPrefab;
-	public GameObject rockPrefab;
-	public GameObject acidProjectilePrefab;
+	//! Roar
+	public float roarChargeTimer = 0.0f;
+	public float roarChargeDuration = 8.0f;
+	private float roarDamageLimit = 500.0f;
+	public GameObject RoarPrefab;
+	Vector3 roarPos;
 
-	public float UU; // distance between the rocks
+	//	public GameObject eyeLaserPrefab;
 
 	private Mecha target;
 	private float speed;
@@ -47,10 +58,15 @@ public class Goatzilla : LifeObject
 	public bool isWalkAnim = false;
 	public bool isSwipeAnim = false;
 	public bool isAcidAnim = false;
-	public bool isRoarAnim = false;
+	public bool isRoarAnim = false; 
+	public bool isRoarPrepare = false;
+	public bool isRoarCharge = false;
+	public bool isRoarAttack = false;
 	public bool isHeadbuttAnim = false;	
 	public bool isThrowRockAnim = false;
 	public bool isEnrageAnim = false;
+
+	bool isRock = false;
 
 
 	enum Direction
@@ -81,8 +97,6 @@ public class Goatzilla : LifeObject
 	public AttackState curAttackState;
 	public BehaviorState curBehaviorState;
 
-
-
 	void Awake ()
 	{
 		lives = 3;
@@ -97,7 +111,6 @@ public class Goatzilla : LifeObject
 		SetSpeed (GetInitialSpeed ());
 		isEnraged = false;
 		enrageHpThreshold = (GetHP() * lives) / 2 ; // Enrage HP
-		//isCharging = false;
 		//ReceiveDamage (1000);
 		curAttackState = AttackState.NONE;
 		prevAttackState =  AttackState.NONE;
@@ -117,14 +130,55 @@ public class Goatzilla : LifeObject
 				{ 				
 					if (curAttackState == AttackState.NONE) 
 					{
-						if(isSwipeAnim == false)
+						if(isSwipeAnim == false || isThrowRockAnim == false || isAcidAnim == false)
 						{
 							Walk (3.0f);
 						}
 					} 
 					else if (curAttackState == AttackState.THROWROCK) 
 					{
-						ThrowRock ();
+						if(randRockThrow == false)
+						{
+							randRockThrow = true;
+							randRockChoice = Random.Range(0, 2);
+						}
+//						if(isThrowRockAnim == false)
+//						{
+//							isThrowRockAnim = true;
+//						}
+						if(isThrowRock1 == true)
+						{
+							//! Check if > 5 rocks switch state else to this logic
+							if ( rockCounter >= 5 )
+							{
+								rockThrowCounter++;
+								Debug.Log("HEllo? : " + rockThrowCounter);
+								rockCounter = 0;
+								if(rockThrowCounter >= 3)
+								{
+									anim.SetBool("DoRockThrow", false);
+									rockThrowCounter = 0;
+									UpdateAttackState(AttackState.ACID);
+									isThrowRock1 = false;
+								}
+								else
+								{
+									anim.SetBool("DoRockThrow", false);
+									UpdateAttackState(AttackState.NONE);
+									isThrowRock1 = false;
+								}
+							}
+							else
+							{
+								rockTimer += Time.deltaTime;
+								if(rockTimer >= rockDuration)
+								{
+									rockCounter ++;
+									Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight), Quaternion.identity);
+									rockTimer = 0.0f;
+								}	
+							}
+						}
 					} 
 					else if (curAttackState == AttackState.ACID) 
 					{
@@ -141,18 +195,19 @@ public class Goatzilla : LifeObject
 							}
 						}
 					} 
-					else if (curAttackState == AttackState.SWIPE) 
-					{
-						if(isSwipeAnim == false)
-						{
-							isSwipeAnim = true;
-							anim.SetTrigger("DoSwipe");
-						}
-					} 
+//					else if (curAttackState == AttackState.SWIPE && isRock == false) 
+//					{
+//					} 
 					else if (curAttackState == AttackState.ROAR) 
 					{
-						//Roar (500);
-						UpdateAttackState(AttackState.NONE);
+						if(isRoarAnim == false)
+						{
+							isRoarAnim = true;
+							anim.SetBool("DoWalk", false);
+							anim.SetTrigger("DoPrepareRoar");
+						}
+						Roar();
+	//						UpdateAttackState(AttackState.NONE);
 					}
 				}
 
@@ -177,7 +232,7 @@ public class Goatzilla : LifeObject
 					}
 					else if (curAttackState == AttackState.ROAR) 
 					{
-						Roar (500);
+						Roar ();
 					}
 				}
 
@@ -222,14 +277,21 @@ public class Goatzilla : LifeObject
 			}
 		}
 	}
+	public void ResetState()
+	{
+		UpdateAttackState(AttackState.NONE);
+	}
 
 	public void ResetAnim()
 	{
-		Debug.Log("isReset?");
+		isRock = false;
 		meleeTimer = 0.0f;
 		isSwipeAnim = false;
 		isAcidAnim = false;
 		isRoarAnim = false;
+		isRoarPrepare = false;
+		isRoarCharge = false;
+		isRoarAttack = false;
 		isHeadbuttAnim = false;	
 		isThrowRockAnim = false;
 		isEnrageAnim = false;
@@ -237,120 +299,94 @@ public class Goatzilla : LifeObject
 
 	private void Walk (float walkDuration)
 	{
-		if (walkTimer <= walkDuration)
+		randRockThrow = false;
+		if (walkTimer >= walkDuration)
 		{
-			if  (GetDistanceFromTarget() <= meleeRange)
+			walkTimer = 0.0f;
+			meleeTimer = 0.0f;
+			anim.SetBool("DoWalk", false);
+			//!	KEVIN change to center of level
+			if ( this.transform.position.x < -2.50f )
 			{
-				meleeTimer += Time.deltaTime;
+				UpdateAttackState(AttackState.ROAR);
 			}
-
 			else
 			{
-				meleeTimer = 0.0f;
+				//! DEBUG, REMOVE and swithc back to throwRock
+				//UpdateAttackState(AttackState.ROAR);
+				anim.SetBool("DoRockThrow", true);
+				UpdateAttackState(AttackState.THROWROCK);
 			}
-
-			if (meleeTimer >= meleeDuration)
-			{
-				anim.SetBool("DoWalk", false);
-				UpdateAttackState(AttackState.SWIPE);
-			}
-
-			else
-			{
-				walkTimer += Time.deltaTime;
-
-				//! Problem
-				anim.SetBool("DoWalk", true);
-				transform.Translate (Vector3.left * Time.deltaTime * speed);
-			}
-
 		}
-
 		else
 		{
-			anim.SetBool("DoWalk", false);
-			if (curBehaviorState == BehaviorState.NORMAL)
+			if(!isSwipeAnim)
 			{
-				if ( this.transform.position.x < 0.0f )
+				if  (GetDistanceFromTarget() <= meleeRange)
 				{
-					UpdateAttackState(AttackState.ROAR);
+					meleeTimer += Time.deltaTime;
 				}
-
 				else
 				{
-					UpdateAttackState(AttackState.THROWROCK);
+					meleeTimer = 0.0f;
 				}
-				walkTimer = 0.0f;
+
+				if (meleeTimer >= meleeDuration)
+				{
+					meleeTimer = 0.0f;
+					isSwipeAnim = true;
+					anim.SetBool("DoWalk", false);
+					anim.SetBool("DoSwipe", true);
+				}
+				else
+				{
+					walkTimer += Time.deltaTime;
+					anim.SetBool("DoWalk", true);
+					transform.Translate (Vector3.left * Time.deltaTime * speed);
+				}
 			}
 		}
 	}
 
 	private void Swipe ()
 	{
+//		Debug.Log("Chek");
 		//StartCoroutine (ApplyDamage (20)); // Slash dmg, Delay to see hp decrease
 		if(GetDistanceFromTarget () <= meleeRange)
 		{
 			target.ReceiveDamage(20);
 		}
-		UpdateAttackState(AttackState.NONE);
+		anim.SetBool("DoSwipe", false);
 	}
 
 
 	private void ThrowRock()
 	{
-		if(GetDistanceFromTarget () >= meleeRange)
+		if (randRockChoice == 0)
 		{
-			/*
-			 * 1) Randomly choose a rock throw type
-			 * 2) Logic for Rock Toss 1
-			 * 3) Logic for Rock Toss 2
-			 */
-			int choice = Random.Range(0, 2);
-
-			if (choice == 0)
+			Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight), Quaternion.identity);
+			Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight) + Vector3.right, Quaternion.identity);
+			Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight) + Vector3.left, Quaternion.identity);
+			rockThrowCounter++;
+			if(rockThrowCounter >= 3)
 			{
-				Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight), Quaternion.identity);
-				Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight) + Vector3.right, Quaternion.identity);
-				Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight) + Vector3.left, Quaternion.identity);
-				rockThrowCounter++;
-				if(rockThrowCounter >= 3)
-				{
-					UpdateAttackState(AttackState.ACID);
-				}
-				else
-				{
-					UpdateAttackState(AttackState.NONE);
-					rockCounter = 0;
-				}
+				anim.SetBool("DoRockThrow", false);
+				rockThrowCounter = 0;
+				UpdateAttackState(AttackState.ACID);
+				rockCounter = 0;
 			}
-			else if (choice == 1)
+			else
 			{
-				//! Check if > 5 rocks switch state else to this logic
-				if ( rockCounter >= 4 )
-				{
-					rockThrowCounter++;
-					if(rockThrowCounter >= 3)
-					{
-						UpdateAttackState(AttackState.ACID);
-					}
-					else
-					{
-						UpdateAttackState(AttackState.NONE);
-						rockCounter = 0;
-					}
-				}
-				else
-				{
-					rockTimer += Time.deltaTime;
-					if(rockTimer >= rockDuration)
-					{
-						rockCounter ++;
-						Instantiate(rockPrefab, target.transform.position + (Vector3.up * rockSpawnHeight), Quaternion.identity);
-						rockTimer = 0.0f;
-					}	
-				}
+				anim.SetBool("DoWalk", true);
+				anim.SetBool("DoRockThrow", false);
+				UpdateAttackState(AttackState.NONE);
+				rockCounter = 0;
 			}
 
+		}
+		else if (randRockChoice == 1)
+		{
+			isThrowRock1 = true;
 		}
 	}
 
@@ -364,12 +400,9 @@ public class Goatzilla : LifeObject
 
 	private void Acid ()
 	{
-		//! Spit disappear
-
 		//! 0.19 left of boss
 		//! 2.46 between each acid
 		//Instantiate (acidProjectilePrefab, transform.position, Quaternion.identity);
-
 		acidTimer += Time.deltaTime;
 		if(acidTimer >= acidDuration)
 		{
@@ -378,6 +411,7 @@ public class Goatzilla : LifeObject
 
 			if(spitPos.x < -11.0f)
 			{
+				isAcidSpit = false;
 				UpdateAttackState(AttackState.NONE);
 			}
 			else
@@ -388,32 +422,63 @@ public class Goatzilla : LifeObject
 
 	}
 
+	public void StartRoar()
+	{
+		Debug.Log("Roar");
+		anim.SetBool("DoWalk", false);
+		isRoarAttack = true;
+		roarPos = new Vector3 (-2.8f, 4.02f, 0.0f);
+		Instantiate(RoarPrefab, this.transform.position + roarPos, Quaternion.identity);
+		UpdateAttackState(AttackState.NONE);
+	}
+
+	public void PrepareRoar()
+	{
+		isRoarPrepare = true;
+	}
+
+	private void Roar()
+	{
+		/* 1) play roar charge anim && isRoarAnim1 true
+		 * 2) if after 8 seconds, play roar anim (if isRoarAnim 1 true)
+		 * -> if isRoarAnim1 true & player damage boss for X HP, reset to None
+		 * -> create extra variable to check if player damage boss when isRoarAnim1 true (put in ReceiveDamage for Boss)
+		 * 
+		 * 3) at x frame in Roar anim shoot Roar Projectile
+		 * 4) Roar projectile will have damage and destroy itself when hit player
+		 * RESET roarDamageLimit, isRoarAnim1 
+		 */
+
+		if (isRoarPrepare == true)
+		{
+			anim.SetBool("DoChargeRoar", true);
+			roarChargeTimer += Time.deltaTime;
+			if ( roarChargeTimer > roarChargeDuration)
+			{
+				anim.SetBool("DoChargeRoar", false);
+				isRoarCharge = true;
+				anim.SetTrigger ("DoRoarAttack");
+			}
+			anim.SetBool("DoWalk", false);
+		}
+		//anim.SetTrigger ("DoRoar");
+		//UpdateAttackState(AttackState.NONE);
+	}
+
 	private IEnumerator Headbutt ()
 	{
 		isHeadbuttAnim = true;
 		//FaceTarget ();
 		//for (int i = 0; i < 3; i++) 
 		//{
-			yield return new WaitForSeconds (1); // 1 sec headbutt once
+		yield return new WaitForSeconds (1); // 1 sec headbutt once
 		//	Debug.Log ("Enemy used headbutt! x" + (i + 1));
-			anim.SetTrigger ("DoHeadbutt");
-//			StartCoroutine (ApplyDamage (70));
+		anim.SetTrigger ("DoHeadbutt");
+		//			StartCoroutine (ApplyDamage (70));
 		//}
 		//yield return new WaitForSeconds (2); // Rest 2s
 		UpdateAttackState(AttackState.NONE);
 	}
-
-	private void Roar(int damage)
-	{
-			isRoarAnim = true;
-			anim.SetTrigger ("DoRoar");
-//		else if (this.ReceiveDamage(500))
-//		{
-//			Debug.Log( "hihihihihi"); 
-//		}
-		UpdateAttackState(AttackState.NONE);
-	}
-
 
 	/*private void Laser ()
 	{
@@ -431,6 +496,18 @@ public class Goatzilla : LifeObject
 		laserEye.GetComponent<EyeLaser> ().SetIsTopToBottom (isTopToBottom);
 		StartCoroutine (Immobolize (4, false));
 	}*/
+
+	public override void ReceiveDamage (int value)
+	{
+		base.ReceiveDamage (value);
+		if(isRoarPrepare == true)
+		{
+			roarDamageLimit += value;
+			UpdateAttackState(AttackState.NONE);
+		}
+		roarDamageLimit = 0.0f;
+		isRoarPrepare = false;
+	}
 
 	public IEnumerator Immobolize (float duration, bool invincible)
 	{

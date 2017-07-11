@@ -33,7 +33,6 @@ public class AcidPrefab : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		Debug.Log("Enter");
 		if (other.gameObject.CompareTag ("Player"))
 		{
 			Debug.Log("Enter");
