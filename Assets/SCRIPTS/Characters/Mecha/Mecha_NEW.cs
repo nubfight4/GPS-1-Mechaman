@@ -23,7 +23,8 @@ public class Mecha_NEW : LifeObject
 	Vector3 maxPos;
 	private Animator anim;
 	private SpriteRenderer sprite;
-	int state;
+	public int state;
+	public int dMG;
 	bool isJumping;
 	bool isStop;
 	//! Combo and Syncgronise attack
@@ -86,8 +87,15 @@ public class Mecha_NEW : LifeObject
 		Boundary ();
 		gamepadPos.x = Input.GetAxis ("Horizontal");
 		//gamepadPos.y = Input.GetAxis ("Vertical");
-		transform.position = gamepadPos + transform.position;
-		Movement ();
+		if(!isJumpPunching)
+		{
+			Debug.Log("I can Move");
+			transform.position = gamepadPos + transform.position;
+			Movement ();
+		}
+		//transform.position = gamepadPos + transform.position;
+		//Movement ();
+		//Movement ();
 		Combo ();
 		UpdateAnimator ();
 	}
@@ -97,7 +105,6 @@ public class Mecha_NEW : LifeObject
 		gamepadPos.x = Input.GetAxis ("Horizontal");
 		//gamepadPos.y = Input.GetAxis ("Vertical");
 		transform.position = gamepadPos + transform.position;
-
 		if (gamepadPos.x < -0.05) {
 			transform.localScale = new Vector3 (-1, transform.localScale.y);
 		}
@@ -172,11 +179,12 @@ public class Mecha_NEW : LifeObject
 				startReset = false;
 				isOtherCombo = false;
 				isJumpPunching = false;
+				//dashPunch = false;
 				p1LPressed = false;
 				p1RPressed = false;
 				p2LPressed = false;
 				p2RPressed = false;
-				resetDuration = 0.7f;
+				resetDuration = 1.0f;
 				state = (int)STATE.IDLE;
 			}
 		}
@@ -191,6 +199,14 @@ public class Mecha_NEW : LifeObject
 			if (Input.GetButtonDown ("Normal Attack") && timePressedNormal == 0) 
 			{
 				state = (int)STATE.JUMPPUNCH1;
+				if(dashPunch)
+				{
+					dMG = 250;
+				}
+				else
+				{
+					dMG = 170;
+				}
 				Debug.Log ("JumpPunch");
 				startReset = true;
 				resetTimer = resetDuration * 0.5f;
@@ -199,10 +215,10 @@ public class Mecha_NEW : LifeObject
 			}
 		}
 
-		if(isJumpPunching)
-		{
-			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
-		}
+//		if(isJumpPunching)
+//		{
+//			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
+//		}
 
 //		if (isJumpPunching) 
 //		{
@@ -238,8 +254,7 @@ public class Mecha_NEW : LifeObject
 			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) 
 			{
 				Debug.Log ("Dash attack right");
-				timePressedHeavy++;
-				startReset = true;
+				//startReset = true;
 				isOtherCombo = true;
 				dashPunch = true;
 				dashPunchRight = true;
@@ -249,25 +264,25 @@ public class Mecha_NEW : LifeObject
 			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) 
 			{
 				Debug.Log ("Dash attack left");
-				timePressedHeavy++;
-				startReset = true;
+				//startReset = true;
 				isOtherCombo = true;
 				dashPunch = true;
 				dashPunchRight = false;
 				dashPunchLeft = true;
 			}
 		}
-
+			
 		if (dashPunch) {
 			if (dashPunchDurationTimer <= dashPunchDuration) 
 			{
 				state = (int)STATE.DASHPUNCH1;
+				dMG = 170;
 				dashPunchDurationTimer += Time.deltaTime * 1000f;
 			} 
 			else 
 			{
 				state = (int)STATE.IDLE;
-				Destroy (DashPunchColliderClone);
+				//Destroy (DashPunchColliderClone);
 				dashPunchDurationTimer = 0f;
 				dashPunch = false;
 				dashPunchLeft = false;
@@ -280,8 +295,8 @@ public class Mecha_NEW : LifeObject
 				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
 				if (!instantOnce) 
 				{
-					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
-					DashPunchColliderClone.transform.parent = gameObject.transform;
+					//DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
+					//DashPunchColliderClone.transform.parent = gameObject.transform;
 					instantOnce = true;
 				}
 			} else if (dashPunchRight && !dashPunchLeft) 
@@ -289,8 +304,8 @@ public class Mecha_NEW : LifeObject
 				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
 				if (!instantOnce) 
 				{
-					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
-					DashPunchColliderClone.transform.parent = gameObject.transform;
+					//DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
+					//DashPunchColliderClone.transform.parent = gameObject.transform;
 					instantOnce = true;
 				}
 			}
@@ -309,25 +324,22 @@ public class Mecha_NEW : LifeObject
 					if (timePressedNormal == 0) 
 					{
 						state = (int)STATE.PUNCH;
+						dMG = 60;
 						resetTimer = 0;
 						timePressedNormal++;
 					} 
 					else if (timePressedNormal == 1) 
 					{
 						state = (int)STATE.WHATSUP;
+						dMG = 130;
 						resetTimer = 0;
 						timePressedNormal++;
 					}
 					else if(timePressedNormal == 2)
 					{
 						state = (int)STATE.SHADOW;
-					} else if (timePressedNormal == 2) 
-					{
-						//resetTimer = 0;
-						state = (int)STATE.SHADOW;
-						Debug.Log ("WTF");
-						Debug.Log (timePressedNormal);
-					}
+						dMG = 200;
+					} 
 				}
 			}
 		}
@@ -382,6 +394,7 @@ public class Mecha_NEW : LifeObject
 					if(timePressedHeavy == 0)
 					{
 						state = (int)STATE.HEAVY;
+						dMG = 100;
 						resetTimer = 0;
 						timePressedHeavy++;
 						Debug.Log("HEAVY1");
@@ -390,6 +403,7 @@ public class Mecha_NEW : LifeObject
 					{
 						Debug.Log("HEAVY2");
 						state = (int)STATE.DOUBLETROUBLE;
+						dMG = 250;
 					}
 				}
 			}
