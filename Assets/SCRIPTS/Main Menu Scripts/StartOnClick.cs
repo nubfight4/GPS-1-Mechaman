@@ -7,6 +7,6 @@ public class StartOnClick : MonoBehaviour {
 
     public void Start(int sceneIndex)
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene("Level_Tutorial");
     }
 }
