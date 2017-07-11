@@ -14,8 +14,7 @@ public class Mecha_NEW : MonoBehaviour
 		HEAVY = 5,
 		DOUBLETROUBLE = 6,
 		JUMPPUNCH = 7,
-		DASHPUNCHRIGHT = 8,
-		DASHPUNCHLEFT = 9,
+		DASHPUNCH = 8,
 		TOTAL}
 
 	;
@@ -211,6 +210,7 @@ public class Mecha_NEW : MonoBehaviour
 			isJumpPunching = false;
 
 //			if (jumpPunchDurationTimer <= jumpPunchDuration) {
+//				isJumpPunching = false;
 //				jumpPunchDurationTimer += Time.deltaTime * 1000f;
 //			} else {
 //				Destroy (JumpPunchColliderClone);
@@ -251,18 +251,19 @@ public class Mecha_NEW : MonoBehaviour
 
 		if (dashPunch) {
 			if (dashPunchLeft && !dashPunchRight) {
-				state = (int)STATE.DASHPUNCHLEFT;
+				state = (int)STATE.DASHPUNCH;
 				dashPunch = false;
 				dashPunchLeft = false;
 				dashPunchRight = false;
 			} else if (dashPunchRight && !dashPunchLeft) {
-				state = (int)STATE.DASHPUNCHRIGHT;
+				state = (int)STATE.DASHPUNCH;
 				dashPunch = false;
 				dashPunchLeft = false;
 				dashPunchRight = false;
 			}
 
 //			if (dashPunchDurationTimer <= dashPunchDuration) {
+//				state = (int)STATE.DASHPUNCHRIGHT;
 //				dashPunchDurationTimer += Time.deltaTime * 1000f;
 //			} else {
 //				Destroy (DashPunchColliderClone);
@@ -272,7 +273,7 @@ public class Mecha_NEW : MonoBehaviour
 //				dashPunchRight = false;
 //				instantOnce = false;
 //			}
-
+//
 //			if (dashPunchLeft && !dashPunchRight) {
 //				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
 //				if (!instantOnce) {
