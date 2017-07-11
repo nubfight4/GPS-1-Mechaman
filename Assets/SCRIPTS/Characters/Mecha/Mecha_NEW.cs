@@ -164,7 +164,7 @@ public class Mecha_NEW : MonoBehaviour {
 			}
 		}
 		//Jump Punch
-		if(Input.GetAxis("Vertical") > 0)
+		/*if(Input.GetAxis("Vertical") > 0)
 		{
 			if(Input.GetButtonDown("Normal Attack") && timePressedNormal == 0)
 			{
@@ -174,7 +174,7 @@ public class Mecha_NEW : MonoBehaviour {
 				isOtherCombo = true;
 				isJumpPunching = true;
 			}
-		}
+		}*/
 
 		//Dash punch
 		if(gamepadPos.x > 0)
@@ -199,36 +199,45 @@ public class Mecha_NEW : MonoBehaviour {
 		}
 
 		//normal combo
-		if (Input.GetButtonDown("Normal Attack")) 
-		{ 
-			if(!isOtherCombo)
-			{
-				startReset = true;
-				timePressedHeavy = 0;
-				if(timePressedNormal < 4)
+		if(timePressedNormal < 4)
+		{
+			if (Input.GetButtonDown("Normal Attack")) 
+			{ 
+				if(!isOtherCombo)
 				{
+					startReset = true;
+					timePressedHeavy = 0;
 					if(timePressedNormal == 0)
 					{
 						state = (int)STATE.PUNCH;
+						resetTimer = 0;
+						timePressedNormal++;
 					}
 					else if(timePressedNormal == 1)
 					{
 						state = (int)STATE.WHATSUP;
+						resetTimer = 0;
+						timePressedNormal++;
 					}
 					else if(timePressedNormal == 2)
 					{
+						//resetTimer = 0;
 						state = (int)STATE.SHADOW;
+						Debug.Log("WTF");
+						Debug.Log(timePressedNormal);
 					}
-					resetTimer = 0;
-					timePressedNormal++;
-				}
-				else
-				{
-					timePressedNormal = 0;
-					state = (int)STATE.IDLE;
 				}
 			}
 		}
+
+		if(timePressedNormal >= 3)
+		{
+			resetTimer = resetDuration;
+			Debug.Log("OVER =3");
+			timePressedNormal = 0;
+			state = (int)STATE.IDLE;
+		}
+
 		//heavy combo
 		if (Input.GetButtonDown("Heavy Attack")) 
 		{
