@@ -13,9 +13,8 @@ public class Mecha_NEW : MonoBehaviour
 		SHADOW = 4,
 		HEAVY = 5,
 		DOUBLETROUBLE = 6,
-		JUMPPUNCH = 7,
-		DASHPUNCHRIGHT = 8,
-		DASHPUNCHLEFT = 9,
+		JUMPPUNCH1 = 7,
+		DASHPUNCH1 = 8,
 		TOTAL}
 
 	;
@@ -71,7 +70,8 @@ public class Mecha_NEW : MonoBehaviour
 		timePressedNormal = 0;
 		timePressedHeavy = 0;
 		resetTimer = 0f;
-		resetDuration = 0.7f;
+		//resetDuration = 0.7f;
+		resetDuration = 1.1f;
 	}
 
 	// Update is called once per frame
@@ -179,7 +179,6 @@ public class Mecha_NEW : MonoBehaviour
 				startReset = false;
 				isOtherCombo = false;
 				isJumpPunching = false;
-				dashPunch = false;
 				p1LPressed = false;
 				p1RPressed = false;
 				p2LPressed = false;
@@ -206,24 +205,28 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		if (isJumpPunching) {
-
-			state = (int)STATE.JUMPPUNCH;
-			isJumpPunching = false;
-
-//			if (jumpPunchDurationTimer <= jumpPunchDuration) {
-//				jumpPunchDurationTimer += Time.deltaTime * 1000f;
-//			} else {
-//				Destroy (JumpPunchColliderClone);
-//				jumpPunchDurationTimer = 0f;
-//				isJumpPunching = false;
-//				instantOnce = false;
-//			}
-//			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
-//			if (!instantOnce) {
-//				JumpPunchColliderClone = Instantiate (JumpPunchCollider, new Vector2 (transform.position.x, transform.position.y + 1), Quaternion.identity);
-//				JumpPunchColliderClone.transform.parent = gameObject.transform;
-//				instantOnce = true;
-//			}
+			if (jumpPunchDurationTimer <= jumpPunchDuration) {
+				state = (int)STATE.JUMPPUNCH1;
+				jumpPunchDurationTimer += Time.deltaTime * 1000f;
+			} else {
+				state = (int)STATE.IDLE;
+				Destroy (JumpPunchColliderClone);
+				jumpPunchDurationTimer = 0f;
+				isJumpPunching = false;
+				instantOnce = false;
+			}
+			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
+			/* 
+			pseudocode for looking for specific animation
+			if (anim.frame == 5) {
+				anim.frame.pause;
+			}
+			*/
+			if (!instantOnce) {
+				JumpPunchColliderClone = Instantiate (JumpPunchCollider, new Vector2 (transform.position.x, transform.position.y + 1), Quaternion.identity);
+				JumpPunchColliderClone.transform.parent = gameObject.transform;
+				instantOnce = true;
+			}
 		}
 
 		//Dash punch (Terrence)
@@ -250,44 +253,34 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		if (dashPunch) {
-			if (dashPunchLeft && !dashPunchRight) {
-				state = (int)STATE.DASHPUNCHLEFT;
+			if (dashPunchDurationTimer <= dashPunchDuration) {
+				state = (int)STATE.DASHPUNCH1;
+				dashPunchDurationTimer += Time.deltaTime * 1000f;
+			} else {
+				state = (int)STATE.IDLE;
+				Destroy (DashPunchColliderClone);
+				dashPunchDurationTimer = 0f;
 				dashPunch = false;
 				dashPunchLeft = false;
 				dashPunchRight = false;
-			} else if (dashPunchRight && !dashPunchLeft) {
-				state = (int)STATE.DASHPUNCHRIGHT;
-				dashPunch = false;
-				dashPunchLeft = false;
-				dashPunchRight = false;
+				instantOnce = false;
 			}
 
-//			if (dashPunchDurationTimer <= dashPunchDuration) {
-//				dashPunchDurationTimer += Time.deltaTime * 1000f;
-//			} else {
-//				Destroy (DashPunchColliderClone);
-//				dashPunchDurationTimer = 0f;
-//				dashPunch = false;
-//				dashPunchLeft = false;
-//				dashPunchRight = false;
-//				instantOnce = false;
-//			}
-
-//			if (dashPunchLeft && !dashPunchRight) {
-//				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
-//				if (!instantOnce) {
-//					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
-//					DashPunchColliderClone.transform.parent = gameObject.transform;
-//					instantOnce = true;
-//				}
-//			} else if (dashPunchRight && !dashPunchLeft) {
-//				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
-//				if (!instantOnce) {
-//					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
-//					DashPunchColliderClone.transform.parent = gameObject.transform;
-//					instantOnce = true;
-//				}
-//			}
+			if (dashPunchLeft && !dashPunchRight) {
+				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
+				if (!instantOnce) {
+					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
+					DashPunchColliderClone.transform.parent = gameObject.transform;
+					instantOnce = true;
+				}
+			} else if (dashPunchRight && !dashPunchLeft) {
+				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
+				if (!instantOnce) {
+					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
+					DashPunchColliderClone.transform.parent = gameObject.transform;
+					instantOnce = true;
+				}
+			}
 		}
 
 		//normal combo
@@ -304,11 +297,18 @@ public class Mecha_NEW : MonoBehaviour
 						state = (int)STATE.WHATSUP;
 						resetTimer = 0;
 						timePressedNormal++;
+<<<<<<< HEAD
+					}
+					else if(timePressedNormal == 2)
+					{
+						state = (int)STATE.SHADOW;
+=======
 					} else if (timePressedNormal == 2) {
 						//resetTimer = 0;
 						state = (int)STATE.SHADOW;
 						Debug.Log ("WTF");
 						Debug.Log (timePressedNormal);
+>>>>>>> origin/Vertical_Slice_KS
 					}
 				}
 			}
@@ -322,6 +322,58 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		//heavy combo
+<<<<<<< HEAD
+//		if (Input.GetButtonDown("Heavy Attack")) 
+//		{
+//			Debug.Log(timePressedHeavy);
+//			if(!isOtherCombo)
+//			{
+//				timePressedNormal = 0;
+//				startReset = true;
+//				if(timePressedHeavy < 5)
+//				{
+//					if(timePressedHeavy == 0)
+//					{
+//						state = (int)STATE.HEAVY;
+//						resetTimer = 0;
+//						timePressedHeavy++;
+//					}
+//					else if(timePressedHeavy >= 1)
+//					{
+//						state = (int)STATE.DOUBLETROUBLE;
+//					}
+//				}
+//				else
+//				{
+//					resetTimer = resetDuration;
+//					timePressedHeavy = 0;
+//					state = (int)STATE.IDLE;
+//				}
+//			}
+//		}
+		Debug.Log(timePressedHeavy);
+		if(timePressedHeavy < 3)
+		{
+			if (Input.GetButtonDown("Heavy Attack")) 
+			{ 
+				if(!isOtherCombo)
+				{
+					Debug.Log(timePressedHeavy);
+					startReset = true;
+					timePressedNormal = 0;
+					if(timePressedHeavy == 0)
+					{
+						state = (int)STATE.HEAVY;
+						resetTimer = 0;
+						timePressedHeavy++;
+						Debug.Log("HEAVY1");
+					}
+					else if(timePressedHeavy == 1)
+					{
+						Debug.Log("HEAVY2");
+						state = (int)STATE.DOUBLETROUBLE;
+					}
+=======
 		if (Input.GetButtonDown ("Heavy Attack")) {
 			if (!isOtherCombo) {
 				timePressedNormal = 0;
@@ -338,9 +390,17 @@ public class Mecha_NEW : MonoBehaviour
 					resetTimer = resetDuration;
 					timePressedHeavy = 0;
 					state = (int)STATE.IDLE;
+>>>>>>> origin/Vertical_Slice_KS
 				}
 			}
 		}
+//		if(timePressedHeavy >= 3)
+//		{
+//			resetTimer = resetDuration;
+//			Debug.Log("OVER =3");
+//			timePressedHeavy = 0;
+//			state = (int)STATE.IDLE;
+//		}
 
 		//ULtimate
 		if (Input.GetButtonDown ("Bumper_Left_P1")) {
