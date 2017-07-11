@@ -71,7 +71,7 @@ public class Mecha_NEW : MonoBehaviour
 		timePressedHeavy = 0;
 		resetTimer = 0f;
 		//resetDuration = 0.7f;
-		resetDuration = 1.1f;
+		resetDuration = 1.2f;
 	}
 
 	// Update is called once per frame
@@ -85,23 +85,6 @@ public class Mecha_NEW : MonoBehaviour
 		Movement ();
 		Combo ();
 		UpdateAnimator ();
-
-//		if (Input.GetKeyDown (KeyCode.Joystick1Button1)) 
-//		{
-//			Debug.Log ("Block!");
-//		}
-//
-//		if (Input.GetKeyDown (KeyCode.Joystick1Button3) && !isJumping) 
-//		{
-//			//supposed to put a timer here on how long player can jump
-//			isJumping = true;
-//			Debug.Log ("Jump!");
-//		}
-//
-//		if (Input.GetKeyUp (KeyCode.Joystick1Button3) && isJumping) 
-//		{
-//			isJumping = false;
-//		}
 	}
 
 	void Movement ()
@@ -164,15 +147,20 @@ public class Mecha_NEW : MonoBehaviour
 
 	void Combo ()
 	{
-		if (gamepadPos.x == 0) {
+		if (gamepadPos.x == 0) 
+		{
 			isStop = true;
-		} else {
+		} 
+		else 
+		{
 			isStop = false;
 		}
 		//delay
-		if (startReset) {
+		if (startReset) 
+		{
 			resetTimer += Time.deltaTime;
-			if (resetTimer >= resetDuration) {
+			if (resetTimer >= resetDuration) 
+			{
 				resetTimer = 0;
 				timePressedNormal = 0;
 				timePressedHeavy = 0;
@@ -195,7 +183,8 @@ public class Mecha_NEW : MonoBehaviour
 
 		//Jump Punch (Terrence)
 		if (Input.GetAxis ("Vertical") > 0) { // Up + X
-			if (Input.GetButtonDown ("Normal Attack") && timePressedNormal == 0) {
+			if (Input.GetButtonDown ("Normal Attack") && timePressedNormal == 0) 
+			{
 				Debug.Log ("JumpPunch");
 				timePressedNormal++;
 				startReset = true;
@@ -204,18 +193,22 @@ public class Mecha_NEW : MonoBehaviour
 			}
 		}
 
-		if (isJumpPunching) {
-			if (jumpPunchDurationTimer <= jumpPunchDuration) {
+		if (isJumpPunching) 
+		{
+			if (jumpPunchDurationTimer <= jumpPunchDuration) 
+			{
 				state = (int)STATE.JUMPPUNCH1;
 				jumpPunchDurationTimer += Time.deltaTime * 1000f;
-			} else {
+			} 
+			else
+			{
 				state = (int)STATE.IDLE;
 				Destroy (JumpPunchColliderClone);
 				jumpPunchDurationTimer = 0f;
 				isJumpPunching = false;
 				instantOnce = false;
 			}
-			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
+				gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
 			/* 
 			pseudocode for looking for specific animation
 			if (anim.frame == 5) {
@@ -231,7 +224,8 @@ public class Mecha_NEW : MonoBehaviour
 
 		//Dash punch (Terrence)
 		if (gamepadPos.x > 0) { // A + Mech Move Right
-			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) {
+			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) 
+			{
 				Debug.Log ("Dash attack right");
 				timePressedHeavy++;
 				startReset = true;
@@ -241,7 +235,8 @@ public class Mecha_NEW : MonoBehaviour
 				dashPunchLeft = false;
 			}
 		} else if (gamepadPos.x < 0) { //A + Mech Move Left
-			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) {
+			if (Input.GetButtonDown ("Heavy Attack") && isJumpPunching == false && timePressedHeavy == 0) 
+			{
 				Debug.Log ("Dash attack left");
 				timePressedHeavy++;
 				startReset = true;
@@ -253,10 +248,13 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		if (dashPunch) {
-			if (dashPunchDurationTimer <= dashPunchDuration) {
+			if (dashPunchDurationTimer <= dashPunchDuration) 
+			{
 				state = (int)STATE.DASHPUNCH1;
 				dashPunchDurationTimer += Time.deltaTime * 1000f;
-			} else {
+			} 
+			else 
+			{
 				state = (int)STATE.IDLE;
 				Destroy (DashPunchColliderClone);
 				dashPunchDurationTimer = 0f;
@@ -266,16 +264,20 @@ public class Mecha_NEW : MonoBehaviour
 				instantOnce = false;
 			}
 
-			if (dashPunchLeft && !dashPunchRight) {
+			if (dashPunchLeft && !dashPunchRight) 
+			{
 				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
-				if (!instantOnce) {
+				if (!instantOnce) 
+				{
 					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
 					DashPunchColliderClone.transform.parent = gameObject.transform;
 					instantOnce = true;
 				}
-			} else if (dashPunchRight && !dashPunchLeft) {
+			} else if (dashPunchRight && !dashPunchLeft) 
+			{
 				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
-				if (!instantOnce) {
+				if (!instantOnce) 
+				{
 					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
 					DashPunchColliderClone.transform.parent = gameObject.transform;
 					instantOnce = true;
@@ -284,37 +286,42 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		//normal combo
-		if (timePressedNormal < 4) {
-			if (Input.GetButtonDown ("Normal Attack")) { 
-				if (!isOtherCombo) {
+		if (timePressedNormal < 4) 
+		{
+			if (Input.GetButtonDown ("Normal Attack")) 
+			{ 
+				if (!isOtherCombo) 
+				{
 					startReset = true;
 					timePressedHeavy = 0;
-					if (timePressedNormal == 0) {
+					if (timePressedNormal == 0) 
+					{
 						state = (int)STATE.PUNCH;
 						resetTimer = 0;
 						timePressedNormal++;
-					} else if (timePressedNormal == 1) {
+					} 
+					else if (timePressedNormal == 1) 
+					{
 						state = (int)STATE.WHATSUP;
 						resetTimer = 0;
 						timePressedNormal++;
-<<<<<<< HEAD
 					}
 					else if(timePressedNormal == 2)
 					{
 						state = (int)STATE.SHADOW;
-=======
-					} else if (timePressedNormal == 2) {
+					} else if (timePressedNormal == 2) 
+					{
 						//resetTimer = 0;
 						state = (int)STATE.SHADOW;
 						Debug.Log ("WTF");
 						Debug.Log (timePressedNormal);
->>>>>>> origin/Vertical_Slice_KS
 					}
 				}
 			}
 		}
 
-		if (timePressedNormal >= 3) {
+		if (timePressedNormal >= 3) 
+		{
 			resetTimer = resetDuration;
 			Debug.Log ("OVER =3");
 			timePressedNormal = 0;
@@ -322,7 +329,6 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		//heavy combo
-<<<<<<< HEAD
 //		if (Input.GetButtonDown("Heavy Attack")) 
 //		{
 //			Debug.Log(timePressedHeavy);
@@ -373,24 +379,6 @@ public class Mecha_NEW : MonoBehaviour
 						Debug.Log("HEAVY2");
 						state = (int)STATE.DOUBLETROUBLE;
 					}
-=======
-		if (Input.GetButtonDown ("Heavy Attack")) {
-			if (!isOtherCombo) {
-				timePressedNormal = 0;
-				startReset = true;
-				if (timePressedHeavy < 2) {
-					if (timePressedHeavy == 0) {
-						state = (int)STATE.HEAVY;
-					} else if (timePressedHeavy >= 1) {
-						state = (int)STATE.DOUBLETROUBLE;
-					}
-					resetTimer = 0;
-					timePressedHeavy++;
-				} else {
-					resetTimer = resetDuration;
-					timePressedHeavy = 0;
-					state = (int)STATE.IDLE;
->>>>>>> origin/Vertical_Slice_KS
 				}
 			}
 		}
@@ -403,24 +391,29 @@ public class Mecha_NEW : MonoBehaviour
 //		}
 
 		//ULtimate
-		if (Input.GetButtonDown ("Bumper_Left_P1")) {
+		if (Input.GetButtonDown ("Bumper_Left_P1")) 
+		{
 			startReset = true;
 			p1LPressed = true;
 		}
-		if (Input.GetButtonDown ("Bumper_Right_P1")) {
+		if (Input.GetButtonDown ("Bumper_Right_P1")) 
+		{
 			startReset = true;
 			p1RPressed = true;
 		}
-		if (Input.GetButtonDown ("Bumper_Left_P2")) {
+		if (Input.GetButtonDown ("Bumper_Left_P2")) 
+		{
 			startReset = true;
 			p2LPressed = true;
 		}
-		if (Input.GetButtonDown ("Bumper_Right_P2")) {
+		if (Input.GetButtonDown ("Bumper_Right_P2")) 
+		{
 			startReset = true;
 			p2RPressed = true;
 		}
 
-		if (p1LPressed == true && p1RPressed == true && p2LPressed == true && p2RPressed == true) {
+		if (p1LPressed == true && p1RPressed == true && p2LPressed == true && p2RPressed == true) 
+		{
 			Debug.Log ("UltimateGG");
 		}
 	}
