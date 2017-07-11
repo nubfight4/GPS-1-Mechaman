@@ -13,8 +13,9 @@ public class Mecha_NEW : MonoBehaviour
 		SHADOW = 4,
 		HEAVY = 5,
 		DOUBLETROUBLE = 6,
-		JUMPPUNCH1 = 7,
-		DASHPUNCH1 = 8,
+		JUMPPUNCH = 7,
+		DASHPUNCHRIGHT = 8,
+		DASHPUNCHLEFT = 9,
 		TOTAL}
 
 	;
@@ -178,6 +179,7 @@ public class Mecha_NEW : MonoBehaviour
 				startReset = false;
 				isOtherCombo = false;
 				isJumpPunching = false;
+				dashPunch = false;
 				p1LPressed = false;
 				p1RPressed = false;
 				p2LPressed = false;
@@ -204,28 +206,24 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		if (isJumpPunching) {
-			if (jumpPunchDurationTimer <= jumpPunchDuration) {
-				state = (int)STATE.JUMPPUNCH1;
-				jumpPunchDurationTimer += Time.deltaTime * 1000f;
-			} else {
-				state = (int)STATE.IDLE;
-				Destroy (JumpPunchColliderClone);
-				jumpPunchDurationTimer = 0f;
-				isJumpPunching = false;
-				instantOnce = false;
-			}
-			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
-			/* 
-			pseudocode for looking for specific animation
-			if (anim.frame == 5) {
-				anim.frame.pause;
-			}
-			*/
-			if (!instantOnce) {
-				JumpPunchColliderClone = Instantiate (JumpPunchCollider, new Vector2 (transform.position.x, transform.position.y + 1), Quaternion.identity);
-				JumpPunchColliderClone.transform.parent = gameObject.transform;
-				instantOnce = true;
-			}
+
+			state = (int)STATE.JUMPPUNCH;
+			isJumpPunching = false;
+
+//			if (jumpPunchDurationTimer <= jumpPunchDuration) {
+//				jumpPunchDurationTimer += Time.deltaTime * 1000f;
+//			} else {
+//				Destroy (JumpPunchColliderClone);
+//				jumpPunchDurationTimer = 0f;
+//				isJumpPunching = false;
+//				instantOnce = false;
+//			}
+//			gameObject.transform.Translate (Vector2.up * jumpPunchForce * Time.deltaTime);
+//			if (!instantOnce) {
+//				JumpPunchColliderClone = Instantiate (JumpPunchCollider, new Vector2 (transform.position.x, transform.position.y + 1), Quaternion.identity);
+//				JumpPunchColliderClone.transform.parent = gameObject.transform;
+//				instantOnce = true;
+//			}
 		}
 
 		//Dash punch (Terrence)
@@ -252,34 +250,44 @@ public class Mecha_NEW : MonoBehaviour
 		}
 
 		if (dashPunch) {
-			if (dashPunchDurationTimer <= dashPunchDuration) {
-				state = (int)STATE.DASHPUNCH1;
-				dashPunchDurationTimer += Time.deltaTime * 1000f;
-			} else {
-				state = (int)STATE.IDLE;
-				Destroy (DashPunchColliderClone);
-				dashPunchDurationTimer = 0f;
+			if (dashPunchLeft && !dashPunchRight) {
+				state = (int)STATE.DASHPUNCHLEFT;
 				dashPunch = false;
 				dashPunchLeft = false;
 				dashPunchRight = false;
-				instantOnce = false;
+			} else if (dashPunchRight && !dashPunchLeft) {
+				state = (int)STATE.DASHPUNCHRIGHT;
+				dashPunch = false;
+				dashPunchLeft = false;
+				dashPunchRight = false;
 			}
 
-			if (dashPunchLeft && !dashPunchRight) {
-				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
-				if (!instantOnce) {
-					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
-					DashPunchColliderClone.transform.parent = gameObject.transform;
-					instantOnce = true;
-				}
-			} else if (dashPunchRight && !dashPunchLeft) {
-				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
-				if (!instantOnce) {
-					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
-					DashPunchColliderClone.transform.parent = gameObject.transform;
-					instantOnce = true;
-				}
-			}
+//			if (dashPunchDurationTimer <= dashPunchDuration) {
+//				dashPunchDurationTimer += Time.deltaTime * 1000f;
+//			} else {
+//				Destroy (DashPunchColliderClone);
+//				dashPunchDurationTimer = 0f;
+//				dashPunch = false;
+//				dashPunchLeft = false;
+//				dashPunchRight = false;
+//				instantOnce = false;
+//			}
+
+//			if (dashPunchLeft && !dashPunchRight) {
+//				gameObject.transform.Translate (Vector2.left * dashPunchForce * Time.deltaTime);
+//				if (!instantOnce) {
+//					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x - 1, transform.position.y), Quaternion.identity);
+//					DashPunchColliderClone.transform.parent = gameObject.transform;
+//					instantOnce = true;
+//				}
+//			} else if (dashPunchRight && !dashPunchLeft) {
+//				gameObject.transform.Translate (Vector2.right * dashPunchForce * Time.deltaTime);
+//				if (!instantOnce) {
+//					DashPunchColliderClone = Instantiate (DashPunchCollider, new Vector2 (transform.position.x + 1, transform.position.y), Quaternion.identity);
+//					DashPunchColliderClone.transform.parent = gameObject.transform;
+//					instantOnce = true;
+//				}
+//			}
 		}
 
 		//normal combo
