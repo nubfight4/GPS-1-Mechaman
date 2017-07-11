@@ -1,24 +1,19 @@
 fileFormatVersion: 2
-guid: 2b0262a22f0575b4387ea883c83b7664
-timeCreated: 1499769189
+guid: 7959e698f95ef2f4cb48960596d5eb81
+timeCreated: 1499766381
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Idle_0
-    21300002: Idle_1
-    21300004: Idle_2
-    21300006: Idle_3
-    21300008: Idle_4
-    21300010: Idle_5
-    21300012: Idle_6
-    21300014: Idle_7
-    21300016: Idle_8
-    21300018: Idle_9
-    21300020: Idle_10
-    21300022: Idle_11
-    21300024: Idle_12
-    21300026: Idle_13
-    21300028: Idle_14
+    21300000: Double Trouble_0
+    21300002: Double Trouble_1
+    21300004: Double Trouble_2
+    21300006: Double Trouble_3
+    21300008: Double Trouble_4
+    21300010: Double Trouble_5
+    21300012: Double Trouble_6
+    21300014: Double Trouble_7
+    21300016: Double Trouble_8
+    21300018: Double Trouble_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,20 +80,20 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: Double Trouble_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1721
+        y: 1720
         width: 1000
-        height: 429
+        height: 430
       alignment: 9
       pivot: {x: 0.31, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_1
+      name: Double Trouble_1
       rect:
         serializedVersion: 2
         x: 1000
@@ -111,11 +106,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_2
+      name: Double Trouble_2
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1720
+        x: 0
+        y: 1290
         width: 1000
         height: 430
       alignment: 9
@@ -124,20 +119,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1288
-        width: 1000
-        height: 432
-      alignment: 9
-      pivot: {x: 0.31, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Idle_4
+      name: Double Trouble_3
       rect:
         serializedVersion: 2
         x: 1000
@@ -150,20 +132,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_5
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 1290
-        width: 1000
-        height: 430
-      alignment: 9
-      pivot: {x: 0.31, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Idle_6
+      name: Double Trouble_4
       rect:
         serializedVersion: 2
         x: 0
@@ -176,7 +145,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_7
+      name: Double Trouble_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -189,75 +158,36 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_8
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 860
-        width: 1000
-        height: 430
-      alignment: 9
-      pivot: {x: 0.31, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Idle_9
+      name: Double Trouble_6
       rect:
         serializedVersion: 2
         x: 0
         y: 430
         width: 1000
-        height: 429
+        height: 430
       alignment: 9
       pivot: {x: 0.31, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_10
+      name: Double Trouble_7
       rect:
         serializedVersion: 2
         x: 1000
-        y: 429
-        width: 1000
-        height: 429
-      alignment: 9
-      pivot: {x: 0.31, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Idle_11
-      rect:
-        serializedVersion: 2
-        x: 2000
         y: 430
         width: 1000
-        height: 427
+        height: 430
       alignment: 9
       pivot: {x: 0.31, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_12
+      name: Double Trouble_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1000
-        height: 428
-      alignment: 9
-      pivot: {x: 0.31, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Idle_13
-      rect:
-        serializedVersion: 2
-        x: 1000
         y: 0
         width: 1000
         height: 430
@@ -267,10 +197,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Idle_14
+      name: Double Trouble_9
       rect:
         serializedVersion: 2
-        x: 2000
+        x: 1000
         y: 0
         width: 1000
         height: 430
