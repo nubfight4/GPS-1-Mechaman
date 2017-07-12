@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mecha_NEW : LifeObject 
+public class Mecha : LifeObject 
 {
 	public enum STATE
 	{
@@ -21,6 +21,7 @@ public class Mecha_NEW : LifeObject
 	public Vector3 gamepadPos;
 	Vector3 minPos;
 	Vector3 maxPos;
+
 	private Animator anim;
 	private SpriteRenderer sprite;
 	public int state;
@@ -61,9 +62,9 @@ public class Mecha_NEW : LifeObject
 		state = 0;
 		isJumping = false; 
 		isStop = false;
-		maxPos.x = 1.4f;
+		maxPos.x = 4.34f;
 		//maxPos.y = -1.0f;
-		minPos.x = -7.8f;
+		minPos.x = -4.55f;
 		//minPos.y = -2.25f;
 		anim = GetComponent<Animator> ();
 		isOtherCombo = false;
@@ -105,10 +106,10 @@ public class Mecha_NEW : LifeObject
 		gamepadPos.x = Input.GetAxis ("Horizontal");
 		//gamepadPos.y = Input.GetAxis ("Vertical");
 		transform.position = gamepadPos + transform.position;
-		if (gamepadPos.x < -0.05) {
+		if (gamepadPos.x < -0.0187) {
 			transform.localScale = new Vector3 (-1, transform.localScale.y);
 		}
-		if (gamepadPos.x > 0.05) {
+		if (gamepadPos.x > 0.01875) {
 			transform.localScale = new Vector3 (1, transform.localScale.y);	
 		}
 	}
@@ -137,9 +138,9 @@ public class Mecha_NEW : LifeObject
 
 	void UpdateAnimator ()
 	{
-		//anim.SetFloat ("Speed", gamepadPos.x);
+		anim.SetFloat ("Speed", gamepadPos.x);
 		//anim.SetBool ("isJumping", isJumping);
-		//anim.SetBool ("isStop", isStop);
+		anim.SetBool ("isStop", isStop);
 		anim.SetInteger ("State", state);
 	}
 
@@ -201,11 +202,11 @@ public class Mecha_NEW : LifeObject
 				state = (int)STATE.JUMPPUNCH1;
 				if(dashPunch)
 				{
-					dMG = 250;
+					dMG = 88;
 				}
 				else
 				{
-					dMG = 170;
+					dMG = 250;
 				}
 				Debug.Log ("JumpPunch");
 				startReset = true;
@@ -281,7 +282,7 @@ public class Mecha_NEW : LifeObject
 			} 
 			else 
 			{
-				state = (int)STATE.IDLE;
+				//state = (int)STATE.IDLE;
 				//Destroy (DashPunchColliderClone);
 				dashPunchDurationTimer = 0f;
 				dashPunch = false;

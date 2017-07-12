@@ -40,7 +40,7 @@ public class PauseOnPress : MonoBehaviour {
 
      void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetButtonDown("Pause"))
         {
             if (!PauseMenuPanel.activeInHierarchy)
             {

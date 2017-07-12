@@ -1,6 +1,6 @@
 Welcome to the training simulation system, rookies. (Press B (on the controller))
 I will be teaching you amazing stuff about this Mecha. 
-The orangey bars up there are health bars while the other one is your Synchronise bar. 
+The orangey bars up there are health bars. 
 Now, it's time for you two to learn some combat skills. 
 Now movement pilot, go ahead and dance like a wild beast to show dominance.
 *Movement pilot - Left Thumb Stick to move around* 
@@ -9,6 +9,6 @@ Try your best to fight against this extremely scary and vicious enemy.
 *Attacking pilot- Press X or A to attack the enemy*
 *Attacking pilot - Press the X button three times to perform a combo attack*
 Alright before you two leave, now both pilots try to work together and do some synchronized attacks.
-* Movement pilot move up while the Attacking pilot does a normal attack at the same time! *
-You guys can check the other moves that Mechaman has in the Controls page from the Pause menu.
+* Movement pilot move up while the Attacking pilot does a normal attack(X) at the same time! *
+You guys can press the Start button to check the Movelist and pause the game.
 Now off you go!

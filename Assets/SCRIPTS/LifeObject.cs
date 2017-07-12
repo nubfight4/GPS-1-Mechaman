@@ -8,6 +8,7 @@ public class LifeObject : MonoBehaviour
 	public int lives = 0;
 	protected int maxHP;
 	protected int HP;
+	protected Vector3 objposition;
 	protected bool isAlive = true;
 	protected bool isInvincible = false;
 
@@ -49,16 +50,21 @@ public class LifeObject : MonoBehaviour
 	{
 		if (!isInvincible)
 			this.HP -= value;
+
 	}
 
 	public virtual void ReceiveDamage (int value, Collider2D col) { }
 
 	public void Knockback(Vector3 knockbackDir, float knockbackPower)
 	{
+		float resetTimer = 0.0f;
+		float resetDuration = 1.0f;
+
 		Vector2 v2 = new Vector2 (knockbackDir.x, knockbackDir.y);
 		Rigidbody2D rb = GetComponent<Rigidbody2D> ();
 		rb.velocity = v2 * knockbackPower;
 	}
+		
 
 	public bool GetIsInvincible ()
 	{

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MeleeCollider : MonoBehaviour {
 	public int damage;
-	public Mecha_NEW mechaScript;
+	public Mecha mechaScript;
+	public Goatzilla target;
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
